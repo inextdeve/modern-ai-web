@@ -1,13 +1,14 @@
 import {
   IconAperture,
-  IconCopy,
   IconLayoutDashboard,
   IconLogin,
   IconMoodHappy,
   IconDeviceCctv,
   IconUserPlus,
+
+
 } from "@tabler/icons";
-import { ServerIcon } from "src/components/shared/Icons";
+import { ServerIcon, Users, ChartDots } from "src/components/shared/Icons";
 import { uniqueId } from "lodash";
 
 const Menuitems = [
@@ -41,8 +42,14 @@ const Menuitems = [
   {
     id: uniqueId(),
     title: "Users",
-    icon: IconCopy,
+    icon: Users,
     href: "/users",
+  },
+  {
+    id: uniqueId(),
+    title: "Video Analytics",
+    icon: ChartDots,
+    href: "/analytics",
   },
   {
     navlabel: true,

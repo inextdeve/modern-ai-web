@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Box, Switch, Typography, Tabs, Tab } from "@mui/material";
-// import { useAppSelector } from "../../../common/util/hooks";
 import Connection from "./Connection";
 import Rights from "./Rights";
-
-// import useCameraStyle from "../../../styles/useCameraStyle";
 import Archive from "./Archive";
 import MotionDetector from "./MotionDetector";
 import Analytics from "./Analytics";
-
-import { cameras } from "src/data/data";
-
-const selectedCamera = cameras[0];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,18 +34,19 @@ function a11yProps(index) {
   };
 }
 
-const ConfigPanel = ({}) => {
+const ConfigPanel = () => {
   const [value, setValue] = useState(0);
-
-  //   const classes = useCameraStyle();
+  const [formData, setFormData] = useState({})
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  //   const selectedCamera = useAppSelector<camera | null>((state) => {
-  //     return state.cameras.selectedCamera;
-  //   });
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
+
+  useEffect(() => {
+    setFormData({ ...selectedCamera })
+  }, [selectedCamera])
 
   return (
     <>
@@ -75,7 +70,7 @@ const ConfigPanel = ({}) => {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Connection />
+              <Connection formData={formData} setFormData={setFormData} />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Rights />

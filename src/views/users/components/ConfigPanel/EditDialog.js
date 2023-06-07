@@ -1,4 +1,6 @@
-import { FC, useState } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { usersActions } from "src/store";
 import {
   Box,
   FormControl,
@@ -13,16 +15,15 @@ import {
   InputBase,
   Link,
 } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../../common/util/hooks";
-import { usersActions } from "../../../../store";
-import { user } from "../../../../common/util/type";
+
+
 
 const EditDialog = () => {
-  const dispatch = useAppDispatch();
-  const selectedUser = useAppSelector<user | null>(
+  const dispatch = useDispatch();
+  const selectedUser = useSelector(
     (state) => state.users.selectedUser
   );
-  const open = useAppSelector((state) => state.users.openEditUserDialog);
+  const open = useSelector((state) => state.users.openEditUserDialog);
 
   const [passwordValue, setPasswordValue] = useState({ pass: "", confirm: "" });
   const [openPassEdit, setOpenPassEdit] = useState(false);
@@ -60,7 +61,7 @@ const EditDialog = () => {
                 gap={3}
                 justifyContent="flex-start"
               >
-                <Button onClick={() => {}}>Save</Button>
+                <Button onClick={() => { }}>Save</Button>
                 <Button onClick={() => setOpenPassEdit(false)}>Cancel</Button>
               </Stack>
             </Box>

@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   List,
   ListItemButton,
@@ -10,21 +11,12 @@ import {
 import {
   ExpandLess,
   ExpandMore,
-  HardDrive,
   User,
-} from "../../../common/components/Icons";
-import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-import { usersActions } from "../../../store";
-import type { user, group } from "../../../common/util/type";
+} from "src/components/shared/Icons";
+import { usersActions } from "src/store";
 
-interface userListProps {}
-interface MenuItemProps {
-  title: string;
-  icon: any;
-  selected: boolean;
-  onClick: () => {};
-}
-const MenuItem = ({ title, icon, selected, onClick }: MenuItemProps) => (
+
+const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
     onClick={onClick}
     key={""}
@@ -37,21 +29,19 @@ const MenuItem = ({ title, icon, selected, onClick }: MenuItemProps) => (
   </ListItemButton>
 );
 
-const UsersList: FC<userListProps> = ({}) => {
-  const dispatch = useAppDispatch();
-  const [listOpen, setListOpen] = useState<any>({}); //Use group name and the true or false expanded list
+const UsersList = () => {
+  const dispatch = useDispatch();
+  const [listOpen, setListOpen] = useState({}); //Use group name and the true or false expanded list
 
-  const handleClick = (name: string, id: number) => {
+  const handleClick = (name, id) => {
     dispatch(usersActions.setSelectedUser({ type: "groups", id }));
-    setListOpen((prev: any) => {
+    setListOpen((prev) => {
       prev[name] = !prev[name];
       return { ...prev };
     });
   };
 
-  const [allGroups, allUsers, selectedUser] = useAppSelector<
-    [group[], user[], user | null]
-  >((state) => [
+  const [allGroups, allUsers, selectedUser] = useSelector((state) => [
     state.users.groups,
     state.users.users,
     state.users.selectedUser,
@@ -59,7 +49,7 @@ const UsersList: FC<userListProps> = ({}) => {
 
   useEffect(() => {
     allGroups.forEach((group) => {
-      setListOpen((prev: any) => {
+      setListOpen((prev) => {
         prev[group.name] = false;
         return prev;
       });
@@ -68,7 +58,7 @@ const UsersList: FC<userListProps> = ({}) => {
 
   return (
     <>
-      {allGroups.map((group, index) => {
+      {allGroups.map((group) => {
         return (
           <List>
             <ListItemButton onClick={() => handleClick(group.name, group.id)}>
@@ -79,7 +69,7 @@ const UsersList: FC<userListProps> = ({}) => {
               <List component="div" disablePadding>
                 {allUsers
                   .filter((user) => user.group.includes(group.id))
-                  .map(({ name, id }: { name: string; id: number }) => {
+                  .map(({ name, id }) => {
                     return (
                       <MenuItem
                         key={`${id}-${name}}`}

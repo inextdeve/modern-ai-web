@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { useSelector } from "react-redux";
 import Information from "./Information";
 
 function TabPanel(props) {
@@ -37,13 +37,14 @@ const ConfigPanel = () => {
     setValue(newValue);
   };
 
-  const selectedModule = useSelector(
-    (state) => state.analytics.selectedModule
+  const selectedUser = useSelector(
+    (state) => state.users.selectedUser
   );
 
   return (
     <>
-      {selectedModule !== null ? (
+      {selectedUser !== null ? (
+
         <Box>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
@@ -58,6 +59,7 @@ const ConfigPanel = () => {
             <Information />
           </TabPanel>
         </Box>
+
       ) : null}
     </>
   );

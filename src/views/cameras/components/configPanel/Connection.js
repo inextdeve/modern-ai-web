@@ -1,7 +1,6 @@
 import {
   FormControl,
   TextField,
-  Typography,
   Select,
   MenuItem,
   Stack,
@@ -9,45 +8,22 @@ import {
   InputLabel,
   FormGroup,
   FormControlLabel,
-  FormGroupProps,
 } from "@mui/material";
-
-// import SlideDialog from "../../../common/components/ui/SlideDialog";
-// import useCameraStyle from "../../../styles/useCameraStyle";
-// import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-// import { camerasActions } from "../../../store";
-// import { ChangeEvent } from "react";
-import CSwitch from "../../../../components/shared/CSwitch";
+import { useDispatch, useSelector } from "react-redux";
+import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 
-const Connection = ({}) => {
-  //   const classes = useCameraStyle();
-  //   const dispatch = useAppDispatch();
+const Connection = ({ formData, setFormData }) => {
 
-  //   const selectedCamera = useAppSelector<camera | null>((state) => {
-  //     if (state.cameras.selectedCamera !== null) {
-  //       return state.cameras.selectedCamera;
-  //     }
-  //     return null;
-  //   });
+  const dispatch = useDispatch();
 
-  //   const handleChange = (prop: string, value: any) => {
-  //     if (value === "true") value = false;
-  //     if (value === "false") value = true;
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
-  //     if (prop.indexOf("-") > 0) {
-  //       const [prop1, prop2] = prop.split("-");
-  //       //Use JSON For Clone
-  //       const newSelectedCamera: any = JSON.parse(JSON.stringify(selectedCamera));
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
-  //       newSelectedCamera[prop1][prop2] = value;
-
-  //       dispatch(camerasActions.modifyCamera(newSelectedCamera));
-  //       return;
-  //     }
-
-  //     dispatch(camerasActions.modifyCamera({ ...selectedCamera, [prop]: value }));
-  //   };
+  console.log(formData)
 
   return (
     <>
@@ -59,6 +35,9 @@ const Connection = ({}) => {
           id="outlined-basic"
           label="IPv4/URL"
           sx={{ width: "80%" }}
+          defaultValue={selectedCamera?.address}
+          value={formData.address}
+          onChange={handleChange}
         />
 
         <Title>Device</Title>
@@ -66,11 +45,12 @@ const Connection = ({}) => {
           <FormControl fullWidth>
             <InputLabel>Brand</InputLabel>
             <Select
-              labelId="month-dd"
-              id="month-dd"
-              value="rtsp"
+              labelId="brand-lb-id"
+              id="brand"
+              defaultValue={selectedCamera?.brand}
+              value={formData?.brand}
               size="small"
-              // onChange={handleChange}
+              onChange={handleChange}
             >
               <MenuItem value="rtsp">RTSP/RTP Device</MenuItem>
               <MenuItem value="html">HTML/MPEG</MenuItem>

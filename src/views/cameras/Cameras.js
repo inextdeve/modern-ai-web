@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import {
   DialogTitle,
   Dialog,
@@ -8,12 +9,13 @@ import {
   Grid,
 } from "@mui/material";
 import PageContainer from "src/components/container/PageContainer";
-
 import ConfigPanel from "./components/configPanel/ConfigPanel";
 import SideBar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
 
+
 const Cameras = () => {
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera)
   return (
     <>
       <PageContainer title="Cameras" description="this is Cameras">
@@ -40,7 +42,7 @@ const Cameras = () => {
             </DashboardCard>
           </Grid>
           <Grid item xs={8}>
-            <DashboardCard title="Outdoor Camera">
+            <DashboardCard title={selectedCamera?.name}>
               <ConfigPanel />
             </DashboardCard>
           </Grid>

@@ -1,34 +1,31 @@
-import { FC } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   TableContainer,
   Table,
   TableBody,
-  Typography,
   Paper,
 } from "@mui/material";
 import {
   StyledTableCell,
   StyledTableRow,
-} from "../../../common/components/ui/StyledComponents";
-import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-import useConfigPanelStyle from "../../../styles/useConfigPanelStyle";
-import { camera, module } from "../../../common/util/type";
-import { camerasActions } from "../../../store";
+} from "src/components/shared/StyledTable";
 
-interface InformationProps {}
+import { camerasActions } from "src/store";
+import Title from "src/components/shared/Title";
 
-const Information: FC<InformationProps> = ({}) => {
-  const dispatch = useAppDispatch();
-  const selectedModule = useAppSelector<module | null>(
+
+const Information = () => {
+  const dispatch = useDispatch();
+  const selectedModule = useSelector(
     (state) => state.analytics.selectedModule
   );
-  const classes = useConfigPanelStyle();
 
-  const allCameras = useAppSelector<camera[]>((state) => state.cameras.items);
 
-  function createData(key: string, value: any) {
+  const allCameras = useSelector((state) => state.cameras.items);
+
+  function createData(key, value) {
     return { key, value };
   }
 
@@ -57,8 +54,7 @@ const Information: FC<InformationProps> = ({}) => {
                     }}
                   >
                     {
-                      allCameras.filter((camera: camera) => camera.id === id)[0]
-                        .name
+                      allCameras.filter((camera) => camera.id === id)[0].name
                     }
                   </Link>
                 </StyledTableCell>
@@ -73,7 +69,7 @@ const Information: FC<InformationProps> = ({}) => {
 
   return (
     <Box>
-      <Typography className={classes.inputsLabel}>Information</Typography>
+      <Title>Information</Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableBody>

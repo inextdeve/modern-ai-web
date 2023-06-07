@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   List,
   ListItemButton,
@@ -12,21 +13,11 @@ import {
   ExpandMore,
   ScanFace,
   Trash2,
-  CleaningServicesOutlinedIcon,
-} from "../../../common/components/Icons";
-import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
+  Cleaning,
+} from "src/components/shared/Icons";
+import { analyticsActions } from "src/store";
 
-import { analyticsActions } from "../../../store";
-import { module } from "../../../common/util/type";
-
-interface serverListProps {}
-interface MenuItemProps {
-  title: string;
-  icon: any;
-  selected: boolean;
-  onClick: () => {};
-}
-const MenuItem = ({ title, icon, selected, onClick }: MenuItemProps) => (
+const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
     onClick={onClick}
     key={""}
@@ -39,24 +30,24 @@ const MenuItem = ({ title, icon, selected, onClick }: MenuItemProps) => (
   </ListItemButton>
 );
 
-const AnalyticsList: FC<serverListProps> = ({}) => {
-  const dispatch = useAppDispatch();
-  const [open, setOpen] = useState<boolean>(false);
+const AnalyticsList = () => {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen((prev) => !prev);
   };
 
-  const allModules = useAppSelector((state) => state.analytics.items);
+  const allModules = useSelector((state) => state.analytics.items);
 
-  const selectedModule = useAppSelector<module | null>(
+  const selectedModule = useSelector(
     (state) => state.analytics.selectedModule
   );
 
-  const icons: any = {
+  const icons = {
     0: <ScanFace />,
-    1: <CleaningServicesOutlinedIcon />,
-    2: <Trash2 />,
+    1: <Trash2 />,
+    2: <Cleaning />,
   };
 
   return (
@@ -67,7 +58,7 @@ const AnalyticsList: FC<serverListProps> = ({}) => {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {allModules.map(({ name, id }: { name: string; id: number }) => {
+          {allModules.map(({ name, id }) => {
             return (
               <MenuItem
                 key={`${id}-${name}}`}

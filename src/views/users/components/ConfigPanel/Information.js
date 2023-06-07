@@ -1,7 +1,7 @@
-import { FC, useState } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
-  Typography,
   TableContainer,
   Table,
   TableBody,
@@ -12,13 +12,10 @@ import {
   Button,
   styled,
 } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-import useConfigPanelStyle from "../../../styles/useConfigPanelStyle";
-import EditDialog from "./components/EditDialog";
-import CSwitch from "../../../common/components/ui/Switch";
-import { user, group } from "../../../common/util/type";
+import EditDialog from "./EditDialog";
+import CSwitch from "src/components/shared/CSwitch";
+import Title from "src/components/shared/Title";
 
-interface InformationProps {}
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,20 +36,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const Information: FC<InformationProps> = ({}) => {
-  const dispatch = useAppDispatch();
-  const classes = useConfigPanelStyle();
-  const [editGroup, setEditGroup] = useState<boolean>(false);
+const Information = () => {
+  const dispatch = useDispatch();
+
+  const [editGroup, setEditGroup] = useState(false);
   const [groupRights, setGroupRights] = useState({});
 
-  const selectedUser = useAppSelector<user | group | any>(
+  const selectedUser = useSelector(
     (state) => state.users.selectedUser
   );
 
   // const handleChange = (prop: string, value: string) => {
   //   dispatch(serversActions.editServer({ ...selectedServer, [prop]: value }));
   // };
-  function createData(key: string, value: any) {
+  function createData(key, value) {
     return { key, value };
   }
 
@@ -62,7 +59,7 @@ const Information: FC<InformationProps> = ({}) => {
     }
   };
 
-  const handleSave = () => {};
+  const handleSave = () => { };
   const rowsGen = () => {
     if (selectedUser?.type === "user") {
       return [
@@ -95,9 +92,9 @@ const Information: FC<InformationProps> = ({}) => {
   return (
     <Box>
       <EditDialog />
-      <Typography className={classes.inputsLabel}>
+      <Title>
         Network address for accessing server
-      </Typography>
+      </Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableBody>

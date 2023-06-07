@@ -1,19 +1,25 @@
-import { FC } from "react";
 import { Grid } from "@mui/material";
-import SideBar from "./SideBar";
-import ConfigPanel from "./ConfigPanel";
-interface AnalyticsProps {}
+import Sidebar from "./components/Sidebar/Sidebar";
+import ConfigPanel from "./components/ConfigPanel/ConfigPanel";
+import DashboardCard from "src/components/shared/DashboardCard";
+import PageContainer from "src/components/container/PageContainer";
 
-const Analytics: FC<AnalyticsProps> = () => {
+const Analytics = () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
-        <SideBar />
+    <PageContainer title="Video Analytics" description="Video Analytics modules">
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <DashboardCard>
+            <Sidebar />
+          </DashboardCard>
+        </Grid>
+        <Grid item xs={8}>
+          <DashboardCard title={"Video Analytics"}>
+            <ConfigPanel />
+          </DashboardCard>
+        </Grid>
       </Grid>
-      <Grid item xs={8}>
-        <ConfigPanel />
-      </Grid>
-    </Grid>
+    </PageContainer>
   );
 };
 

@@ -28,6 +28,8 @@ const Login = Loadable(lazy(() => import("../views/authentication/Login")));
 
 const Cameras = Loadable(lazy(() => import("../views/cameras/Cameras")));
 const Servers = Loadable(lazy(() => import("../views/servers/Servers")));
+const Users = Loadable(lazy(() => import("../views/users/Users")));
+const Analytics = Loadable(lazy(() => import("../views/analytics/Analytics")));
 
 const Router = [
   {
@@ -35,9 +37,11 @@ const Router = [
     element: <FullLayout />,
     children: [
       { path: "/", element: <Navigate to="/dashboard" /> },
+      { path: "/dashboard", exact: true, element: <Dashboard /> },
       { path: "/cameras", element: <Cameras /> },
       { path: "/servers", element: <Servers /> },
-      { path: "/dashboard", exact: true, element: <Dashboard /> },
+      { path: "/users", element: <Users /> },
+      { path: "/analytics", element: <Analytics /> },
       { path: "/sample-page", exact: true, element: <SamplePage /> },
       { path: "/icons", exact: true, element: <Icons /> },
       { path: "/ui/typography", exact: true, element: <TypographyPage /> },

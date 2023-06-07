@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { usersActions } from "src/store";
 import {
   DialogTitle,
   Dialog,
@@ -10,34 +13,34 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  SelectChangeEvent,
 } from "@mui/material";
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../common/util/hooks";
-import { usersActions } from "../../store";
-import ConfigPanel from "./ConfigPanel";
-import SideBar from "./SideBar/SideBar";
+import ConfigPanel from "./components/ConfigPanel/ConfigPanel";
+import Sidebar from "./components/Sidebar/Sidebar";
+import DashboardCard from "src/components/shared/DashboardCard"
+import PageContainer from "src/components/container/PageContainer";
 
-const Servers = () => {
-  const dispatch = useAppDispatch();
+const Users = () => {
+  const dispatch = useDispatch();
 
-  const open = useAppSelector((state) => state.users.openCreateUserDialog);
+  const open = useSelector((state) => state.users.openCreateUserDialog);
 
-  const [value, setValue] = useState<string>("");
+  const selectedUser = useSelector(state => state.users.selectedUser)
 
-  const [createType, setCreateType] = useState<string>(""); //Type mean a user or a group
+  const [value, setValue] = useState("");
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setCreateType(event.target.value as string);
+  const [createType, setCreateType] = useState(""); //Type mean a user or a group
+
+  const handleChange = (event) => {
+    setCreateType(event.target.value);
   };
 
   const handleAddUser = () => {
-    setTimeout(() => {}, 4000);
+    setTimeout(() => { }, 4000);
     dispatch(usersActions.add({}));
   };
 
   return (
-    <>
+    <PageContainer title="users" description="Users management">
       <Dialog open={open}>
         <Box sx={{ padding: "1rem" }}>
           <DialogTitle sx={{ textAlign: "center" }}>
@@ -79,14 +82,18 @@ const Servers = () => {
       </Dialog>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <SideBar />
+          <DashboardCard>
+            <Sidebar />
+          </DashboardCard>
         </Grid>
         <Grid item xs={8}>
-          <ConfigPanel />
+          <DashboardCard title={selectedUser?.name}>
+            <ConfigPanel />
+          </DashboardCard>
         </Grid>
       </Grid>
-    </>
+    </PageContainer>
   );
 };
 
-export default Servers;
+export default Users;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   List,
   ListItemButton,
@@ -7,11 +8,9 @@ import {
   Collapse,
   Box,
 } from "@mui/material";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-// import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-// import { camerasActions } from "../../../store";
-import { cameras } from "src/data/data";
+
+import { Video, ExpandMore, ExpandLess } from "src/components/shared/Icons";
+import { camerasActions } from "src/store";
 
 const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
@@ -26,22 +25,18 @@ const MenuItem = ({ title, icon, selected, onClick }) => (
   </ListItemButton>
 );
 
-const CamerasList = ({}) => {
+const CamerasList = () => {
+  const dispatch = useDispatch();
+
+  const allCameras = useSelector((state) => state.cameras.items);
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
+
   const [camerasOpen, setCameraOpen] = useState(false);
 
   const handleClick = () => {
     setCameraOpen((prev) => !prev);
   };
 
-//   const allCameras = useAppSelector((state) => state.cameras.items);
-
-//   const selectedCamera = useAppSelector<camera | null>(
-//     (state) => state.cameras.selectedCamera
-//   );
-
-//   const dispatch = useAppDispatch();
-
-  const allCameras = cameras;
 
   return (
     <List>
@@ -56,9 +51,9 @@ const CamerasList = ({}) => {
               <MenuItem
                 key={`${id}-${name}}`}
                 title={name}
-                icon={<ExpandMore />}
-                // selected={id === selectedCamera?.id}
-                // onClick={() => dispatch(camerasActions.setSelectedCamera(id))}
+                icon={<Video />}
+                selected={id === selectedCamera?.id}
+                onClick={() => dispatch(camerasActions.setSelectedCamera(id))}
               />
             );
           })}
