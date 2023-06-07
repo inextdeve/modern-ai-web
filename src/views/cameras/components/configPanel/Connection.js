@@ -20,42 +20,39 @@ import {
 import CSwitch from "../../../../components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 
-
 const Connection = ({}) => {
-//   const classes = useCameraStyle();
-//   const dispatch = useAppDispatch();
+  //   const classes = useCameraStyle();
+  //   const dispatch = useAppDispatch();
 
-//   const selectedCamera = useAppSelector<camera | null>((state) => {
-//     if (state.cameras.selectedCamera !== null) {
-//       return state.cameras.selectedCamera;
-//     }
-//     return null;
-//   });
+  //   const selectedCamera = useAppSelector<camera | null>((state) => {
+  //     if (state.cameras.selectedCamera !== null) {
+  //       return state.cameras.selectedCamera;
+  //     }
+  //     return null;
+  //   });
 
-//   const handleChange = (prop: string, value: any) => {
-//     if (value === "true") value = false;
-//     if (value === "false") value = true;
+  //   const handleChange = (prop: string, value: any) => {
+  //     if (value === "true") value = false;
+  //     if (value === "false") value = true;
 
-//     if (prop.indexOf("-") > 0) {
-//       const [prop1, prop2] = prop.split("-");
-//       //Use JSON For Clone
-//       const newSelectedCamera: any = JSON.parse(JSON.stringify(selectedCamera));
+  //     if (prop.indexOf("-") > 0) {
+  //       const [prop1, prop2] = prop.split("-");
+  //       //Use JSON For Clone
+  //       const newSelectedCamera: any = JSON.parse(JSON.stringify(selectedCamera));
 
-//       newSelectedCamera[prop1][prop2] = value;
+  //       newSelectedCamera[prop1][prop2] = value;
 
-//       dispatch(camerasActions.modifyCamera(newSelectedCamera));
-//       return;
-//     }
+  //       dispatch(camerasActions.modifyCamera(newSelectedCamera));
+  //       return;
+  //     }
 
-//     dispatch(camerasActions.modifyCamera({ ...selectedCamera, [prop]: value }));
-//   };
+  //     dispatch(camerasActions.modifyCamera({ ...selectedCamera, [prop]: value }));
+  //   };
 
   return (
     <>
       <Box>
-        <Typography sx={{my: 3, fontSize: "0.9rem", fontWeight: 600}}>
-          Address (IP address or URL)
-        </Typography>
+        <Title>Address (IP address or URL)</Title>
         <TextField
           name="address"
           size="small"
@@ -69,67 +66,46 @@ const Connection = ({}) => {
           <FormControl fullWidth>
             <InputLabel>Brand</InputLabel>
             <Select
-                labelId="month-dd"
-                id="month-dd"
-                value="rtsp"
-                size="small"
-                // onChange={handleChange}
+              labelId="month-dd"
+              id="month-dd"
+              value="rtsp"
+              size="small"
+              // onChange={handleChange}
             >
-                <MenuItem value="rtsp">RTSP/RTP Device</MenuItem>
+              <MenuItem value="rtsp">RTSP/RTP Device</MenuItem>
               <MenuItem value="html">HTML/MPEG</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth>
             <InputLabel>Device Type</InputLabel>
-            <Select
-              name="type"
-              size="small"
-              label="Device Type"
-
-            >
+            <Select name="type" size="small" label="Device Type">
               <MenuItem value="camera">Camera</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth>
             <InputLabel>Model</InputLabel>
-            <Select
-              name="model"
-              size="small"
-              label="Model"
-
-            >
+            <Select name="model" size="small" label="Model">
               <MenuItem value="rtsp">RTSP/RTP Device</MenuItem>
             </Select>
           </FormControl>
         </Stack>
-        <Typography sx={{my: 3, fontSize: "0.9rem", fontWeight: 600}} >Authorization</Typography>
+        <Title>Authorization</Title>
         <Stack direction="row" spacing={4}>
-          <TextField
-            name="auth-username"
-            size="small"
-            label="Username"
-
-          />
+          <TextField name="auth-username" size="small" label="Username" />
           <TextField
             name="auth-password"
             size="small"
             label="Password"
             type="password"
-
           />
         </Stack>
       </Box>
       <Box>
-        <Typography sx={{my: 3, fontSize: "0.9rem", fontWeight: 600}} >Video streams</Typography>
+        <Title>Video streams</Title>
         <Stack direction="row" spacing={4}>
           <FormControl>
             <InputLabel>Format</InputLabel>
-            <Select
-              name="streams-format"
-              size="small"
-              label="Model"
-              
-            >
+            <Select name="streams-format" size="small" label="Model">
               <MenuItem value="h264">H264</MenuItem>
               <MenuItem value="h265">H265</MenuItem>
             </Select>
@@ -137,22 +113,18 @@ const Connection = ({}) => {
         </Stack>
       </Box>
       <Box>
-        <Typography sx={{my: 3, fontSize: "0.9rem", fontWeight: 600}}>Additional</Typography>
+        <Title>Additional</Title>
 
-        <FormGroup
-          
-        >
+        <FormGroup>
           <FormControlLabel
             name="sound"
             checked
             control={<CSwitch />}
             label="Sound reception"
-
           />
           <FormControlLabel
             name="narrowBandwidth"
             checked
-            
             control={<CSwitch />}
             label="Narrow bandwidth camera"
           />
@@ -162,9 +134,7 @@ const Connection = ({}) => {
           />
         </FormGroup>
       </Box>
-      <Box>
-        {/* <SlideDialog /> */}
-      </Box>
+      <Box>{/* <SlideDialog /> */}</Box>
     </>
   );
 };

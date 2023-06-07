@@ -1,74 +1,80 @@
 import {
-  IconAperture, IconCopy, IconLayoutDashboard, IconLogin, IconMoodHappy, IconDeviceCctv , IconUserPlus
-} from '@tabler/icons';
-
-import { uniqueId } from 'lodash';
+  IconAperture,
+  IconCopy,
+  IconLayoutDashboard,
+  IconLogin,
+  IconMoodHappy,
+  IconDeviceCctv,
+  IconUserPlus,
+} from "@tabler/icons";
+import { ServerIcon } from "src/components/shared/Icons";
+import { uniqueId } from "lodash";
 
 const Menuitems = [
   {
     navlabel: true,
-    subheader: 'Home',
+    subheader: "Home",
   },
 
   {
     id: uniqueId(),
-    title: 'Dashboard',
+    title: "Dashboard",
     icon: IconLayoutDashboard,
-    href: '/dashboard',
+    href: "/dashboard",
   },
   {
     navlabel: true,
-    subheader: 'Utilities',
+    subheader: "Utilities",
   },
   {
     id: uniqueId(),
-    title: 'Cameras',
+    title: "Cameras",
     icon: IconDeviceCctv,
-    href: '/cameras',
+    href: "/cameras",
   },
   {
     id: uniqueId(),
-    title: 'Servers',
-    icon: IconCopy,
-    href: '/servers',
+    title: "Servers",
+    icon: ServerIcon,
+    href: "/servers",
   },
   {
     id: uniqueId(),
-    title: 'Users',
+    title: "Users",
     icon: IconCopy,
-    href: '/users',
+    href: "/users",
   },
   {
     navlabel: true,
-    subheader: 'Auth',
+    subheader: "Auth",
   },
   {
     id: uniqueId(),
-    title: 'Login',
+    title: "Login",
     icon: IconLogin,
-    href: '/auth/login',
+    href: "/auth/login",
   },
   {
     id: uniqueId(),
-    title: 'Register',
+    title: "Register",
     icon: IconUserPlus,
-    href: '/auth/register',
+    href: "/auth/register",
   },
   {
     navlabel: true,
-    subheader: 'Extra',
+    subheader: "Extra",
   },
   {
     id: uniqueId(),
-    title: 'Icons',
+    title: "Icons",
     icon: IconMoodHappy,
-    href: '/icons',
+    href: "/icons",
   },
   {
     id: uniqueId(),
-    title: 'Sample Page',
+    title: "Sample Page",
     icon: IconAperture,
-    href: '/sample-page',
+    href: "/sample-page",
   },
 ];
 

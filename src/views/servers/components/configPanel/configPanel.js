@@ -1,17 +1,7 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Box, Switch, Typography, Tabs, Tab } from "@mui/material";
-// import { useAppSelector } from "../../../common/util/hooks";
-import Connection from "./Connection";
-import Rights from "./Rights";
-
-// import useCameraStyle from "../../../styles/useCameraStyle";
-import Archive from "./Archive";
-import MotionDetector from "./MotionDetector";
-import Analytics from "./Analytics";
-
-import { cameras } from "src/data/data";
-
-const selectedCamera = cameras[0];
+import Information from "./Information";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,19 +33,15 @@ function a11yProps(index) {
 const ConfigPanel = ({}) => {
   const [value, setValue] = useState(0);
 
-  //   const classes = useCameraStyle();
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  //   const selectedCamera = useAppSelector<camera | null>((state) => {
-  //     return state.cameras.selectedCamera;
-  //   });
+  const selectedServer = useSelector((state) => state.servers.selectedServer);
 
   return (
     <>
-      {selectedCamera !== null ? (
+      {selectedServer !== null ? (
         <>
           <Box component="header">
             <Switch />
@@ -67,27 +53,11 @@ const ConfigPanel = ({}) => {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <Tab label="Connection" {...a11yProps(0)} />
-                <Tab label="Rights" {...a11yProps(1)} />
-                <Tab label="Archive" {...a11yProps(2)} />
-                <Tab label="Motion Detector" {...a11yProps(3)} />
-                <Tab label="Analytics" {...a11yProps(4)} />
+                <Tab label="Information" {...a11yProps(0)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Connection />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <Rights />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-              <Archive />
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-              <MotionDetector />
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-              <Analytics />
+              <Information />
             </TabPanel>
           </Box>
         </>
