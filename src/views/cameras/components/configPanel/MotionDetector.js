@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   FormGroup,
@@ -7,13 +8,20 @@ import {
 } from "@mui/material";
 import Title from "src/components/shared/Title";
 import { cameras } from "src/data/data";
-// import { camerasActions } from "../../../store";
+import { camerasActions } from "src/store";
 import CSwitch from "src/components/shared/CSwitch";
 
 const MotionDetector = ({}) => {
-  //   const classes = useCameraStyle();
-  //   const dispatch = useAppDispatch();
-  const selectedCamera = cameras[0];
+  const dispatch = useDispatch();
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
+
+  const handleChange = (e) =>
+    dispatch(
+      camerasActions.editCurrent({
+        [e.target.name]: e.target.checked,
+      })
+    );
+
   return (
     <Box>
       <Title>Video stream for analysis</Title>
@@ -30,14 +38,7 @@ const MotionDetector = ({}) => {
           checked={selectedCamera?.motionDetector}
           control={<CSwitch />}
           label="Motion Detector"
-          //   onChange={(e) =>
-          //     dispatch(
-          //       camerasActions.modifyCamera({
-          //         ...selectedCamera,
-          //         [e.target.name]: e.target.checked,
-          //       })
-          //     )
-          //   }
+          onChange={handleChange}
         />
       </FormGroup>
     </Box>

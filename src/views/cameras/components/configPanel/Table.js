@@ -1,36 +1,36 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
-// import Cameras from "../../Cameras";
-import { cameras } from "src/data/data";
-// import { useAppSelector, useAppDispatch } from "../../../../common/util/hooks";
-// import { camerasActions } from "../../../../store/index";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Checkbox,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { camerasActions } from "src/store/index";
 
 function createData(allGroupsOfUsers, surveillance, archive) {
   return { allGroupsOfUsers, surveillance, archive };
 }
 
 const BasicTable = () => {
-  //   const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
-  const selectedCamera = cameras[0];
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
   const rows = selectedCamera?.rights.map((item) =>
     createData(item.group, item.surveillance, item.archive)
   );
 
-  //   const handleChange = (prop, value, index) => {
-  //     const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera));
+  const handleChange = (prop, value, index) => {
+    const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera));
 
-  //     newSelectedCamera.rights[index][prop] = value;
+    newSelectedCamera.rights[index][prop] = value;
 
-  //     dispatch(camerasActions.modifyCamera(newSelectedCamera));
-  //   };
+    dispatch(camerasActions.editCurrent(newSelectedCamera));
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -55,18 +55,18 @@ const BasicTable = () => {
                 <Checkbox
                   name="surveillance"
                   checked={row.surveillance}
-                  //   onChange={(e) =>
-                  //     handleChange(e.target.name, e.target.checked, index)
-                  //   }
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked, index)
+                  }
                 />
               </TableCell>
               <TableCell align="right">
                 <Checkbox
                   name="archive"
                   checked={row.archive}
-                  //   onChange={(e) =>
-                  //     handleChange(e.target.name, e.target.checked, index)
-                  //   }
+                  onChange={(e) =>
+                    handleChange(e.target.name, e.target.checked, index)
+                  }
                 />
               </TableCell>
             </TableRow>

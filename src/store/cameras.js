@@ -5,6 +5,7 @@ const { reducer, actions } = createSlice({
   initialState: {
     items: [],
     selectedCamera: null,
+    cloneSelected: null,
     openCreateCameraDialog: false,
   },
   reducers: {
@@ -15,13 +16,12 @@ const { reducer, actions } = createSlice({
       state.selectedCamera = state.items.filter(
         (item) => item.id === action.payload
       )[0];
+      state.cloneSelected = state.items.filter(
+        (item) => item.id === action.payload
+      )[0];
     },
-    modifyCamera(state, action) {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) return action.payload;
-        return item;
-      });
-      state.selectedCamera = action.payload;
+    editCurrent(state, action) {
+      state.selectedCamera = { ...state.selectedCamera, ...action.payload };
     },
     setOpenCreateCameraDialog(state) {
       state.openCreateCameraDialog = !state.openCreateCameraDialog;

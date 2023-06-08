@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   FormControl,
@@ -9,26 +10,22 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-// import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-// import { camerasActions } from "../../../store";
+import { camerasActions } from "src/store";
 import CSwitch from "src/components/shared/CSwitch";
-import { cameras } from "src/data/data";
 import Title from "src/components/shared/Title";
 
 const Archive = ({}) => {
-  //   const classes = useCameraStyle();
+  const dispatch = useDispatch();
 
-  //   const dispatch = useAppDispatch();
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
-  const selectedCamera = cameras[0];
+  const handleChange = (prop, value) => {
+    const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera)); //clone the selected camera and modify it
 
-  //   const handleChange = (prop, value) => {
-  //     const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera));
+    newSelectedCamera.archive[prop] = value;
 
-  //     newSelectedCamera.archive[prop] = value;
-
-  //     dispatch(camerasActions.modifyCamera(newSelectedCamera));
-  //   };
+    dispatch(camerasActions.editCurrent(newSelectedCamera));
+  };
 
   return (
     <Box>
@@ -38,18 +35,18 @@ const Archive = ({}) => {
           control={<CSwitch />}
           label="Recording and viewing archive"
           checked={selectedCamera?.archive.recAndArch}
-          //   onChange={(e) => handleChange(e.target.name, e.target.checked)}
+          onChange={(e) => handleChange(e.target.name, e.target.checked)}
         />
       </FormGroup>
       <FormControl
-      // onChange={(e) => handleChange(e.target.name, e.target.value)}
+        onChange={(e) => handleChange(e.target.name, e.target.value)}
       >
         <FormLabel id="demo-radio-buttons-group-label">
           Recording Mode
         </FormLabel>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue={selectedCamera?.archive.recMode}
+          value={selectedCamera?.archive.recMode}
           name="recMode"
         >
           <FormControlLabel

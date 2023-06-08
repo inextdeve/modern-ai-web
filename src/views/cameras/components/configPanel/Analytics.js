@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Grid } from "@mui/material";
 import ModuleCard from "./ModuleCard";
 import {
@@ -5,25 +6,22 @@ import {
   CleaningServicesOutlinedIcon,
   IconTrash,
 } from "src/components/shared/Icons";
-
-import { cameras } from "src/data/data";
 import Title from "src/components/shared/Title";
 
-// import { camerasActions } from "../../../store";
+import { camerasActions } from "src/store";
 
 const Analytics = ({}) => {
-  //   const classes = useCameraStyle();
+  const dispatch = useDispatch();
 
-  //   const dispatch = useAppDispatch();
+  const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
-  const selectedCamera = cameras[0];
-  //   const handleChange = (prop, value) => {
-  //     const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera));
+  const handleChange = (prop, value) => {
+    const newSelectedCamera = JSON.parse(JSON.stringify(selectedCamera));
 
-  //     newSelectedCamera.analytics[prop] = value;
+    newSelectedCamera.analytics[prop] = value;
 
-  //     dispatch(camerasActions.modifyCamera(newSelectedCamera));
-  //   };
+    dispatch(camerasActions.editCurrent(newSelectedCamera));
+  };
 
   return (
     <Box>
@@ -35,7 +33,7 @@ const Analytics = ({}) => {
             icon={EngineeringIcon}
             text="Wroker presence"
             checked={selectedCamera?.analytics.workerPresence}
-            // onChange={(e) => handleChange(e.target.name, e.target.checked)}
+            onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -44,7 +42,7 @@ const Analytics = ({}) => {
             icon={CleaningServicesOutlinedIcon}
             text="Quality of cleaning"
             checked={selectedCamera?.analytics.qualityOfCleaning}
-            // onChange={(e) => handleChange(e.target.name, e.target.checked)}
+            onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -53,7 +51,7 @@ const Analytics = ({}) => {
             icon={IconTrash}
             text="Trash cleaning"
             checked={selectedCamera?.analytics.trashUnloading}
-            // onChange={(e) => handleChange(e.target.name, e.target.checked)}
+            onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>
       </Grid>

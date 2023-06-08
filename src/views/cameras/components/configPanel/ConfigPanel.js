@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Box, Switch, Typography, Tabs, Tab } from "@mui/material";
+import _ from "lodash";
+import { Box, Switch, Typography, Tabs, Tab, Button } from "@mui/material";
 import Connection from "./Connection";
 import Rights from "./Rights";
 import Archive from "./Archive";
@@ -36,7 +37,7 @@ function a11yProps(index) {
 
 const ConfigPanel = () => {
   const [value, setValue] = useState(0);
-  const [formData, setFormData] = useState({})
+  const [updated, setUpdated] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -44,9 +45,11 @@ const ConfigPanel = () => {
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
+  const cloneSelected = useSelector((state) => state.cameras.cloneSelected);
+
   useEffect(() => {
-    setFormData({ ...selectedCamera })
-  }, [selectedCamera])
+    setUpdated(!_.isEqual(cloneSelected, selectedCamera));
+  }, [selectedCamera]);
 
   return (
     <>
@@ -70,7 +73,7 @@ const ConfigPanel = () => {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Connection formData={formData} setFormData={setFormData} />
+              <Connection />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Rights />
@@ -84,6 +87,7 @@ const ConfigPanel = () => {
             <TabPanel value={value} index={4}>
               <Analytics />
             </TabPanel>
+            {updated ? <Button variant="contained">Update</Button> : null}
           </Box>
         </>
       ) : null}
