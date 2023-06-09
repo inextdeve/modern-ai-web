@@ -1,24 +1,24 @@
+import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-// import { useAppDispatch, useAppSelector } from "../../../common/util/hooks";
-// import { camerasActions } from "../../../store";
+import { camerasActions } from "src/store";
 // import { FolderPlus, PlusCircle } from "../../../common/components/Icons";
 
 import { Stack } from "@mui/material";
-import { IconCameraPlus, IconFolderPlus } from "@tabler/icons";
+import { CameraPlus, FolderPlus } from "src/components/shared/Icons";
 
 export default function VariantButtonGroup() {
-  //   const dispatch = useAppDispatch();
-  //   const openDialog = () => {
-  //     dispatch(camerasActions.setOpenCreateCameraDialog());
-  //   };
+  const dispatch = useDispatch();
+  const openDialog = () => {
+    dispatch(camerasActions.setCreateCameraDialog());
+  };
   return (
 
     <Stack direction="row" justifyContent="space-between">
-      <Button size="large" >
-        <IconCameraPlus />
+      <Button size="large" onClick={openDialog}>
+        <CameraPlus />
       </Button>
       <Button size="large">
-        <IconFolderPlus />
+        <FolderPlus />
       </Button>
     </Stack>
 

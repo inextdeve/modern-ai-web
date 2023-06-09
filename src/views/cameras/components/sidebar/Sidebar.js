@@ -4,8 +4,8 @@ import SearchBox from "./SearchBox";
 import BottomButtons from "./BottomButtons";
 
 
-const SideBar= ({}) => {
-  
+const SideBar = () => {
+
   return (
     <>
       <Box>

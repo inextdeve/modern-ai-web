@@ -19,7 +19,7 @@ import Title from "src/components/shared/Title";
 const Information = () => {
   const dispatch = useDispatch();
   const selectedModule = useSelector(
-    (state) => state.analytics.selectedModule
+    (state) => state.analytics.selected
   );
 
 

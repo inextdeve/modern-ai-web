@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Box, Switch, Typography, Tabs, Tab } from "@mui/material";
+import _ from "lodash";
+import { Box, Switch, Typography, Tabs, Tab, Button } from "@mui/material";
 import Information from "./Information";
 
 function TabPanel(props) {
@@ -30,14 +31,22 @@ function a11yProps(index) {
   };
 }
 
-const ConfigPanel = ({}) => {
+const ConfigPanel = () => {
   const [value, setValue] = useState(0);
+  const [updated, setUpdated] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const selectedServer = useSelector((state) => state.servers.selectedServer);
+
+  const selectedServer = useSelector((state) => state.servers.selected);
+
+  const cloneSelected = useSelector((state) => state.servers.cloneSelected);
+
+  useEffect(() => {
+    setUpdated(!_.isEqual(cloneSelected, selectedServer));
+  }, [selectedServer]);
 
   return (
     <>
@@ -59,6 +68,7 @@ const ConfigPanel = ({}) => {
             <TabPanel value={value} index={0}>
               <Information />
             </TabPanel>
+            {updated && <Button variant="contained">Update</Button>}
           </Box>
         </>
       ) : null}

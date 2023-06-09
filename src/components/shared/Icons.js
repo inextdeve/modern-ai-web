@@ -13,10 +13,13 @@ import {
   IconVideo as Video,
   IconFaceId as ScanFace,
   IconWashDryShade as Cleaning,
-  IconChartDots3 as ChartDots
-} from "@tabler/icons";
+  IconChartDots3 as ChartDots,
+  IconCameraUp as CameraUp,
+  IconCameraPlus as CameraPlus
 
-import { HardDrive, Trash2 } from "lucide-react";
+} from "@tabler/icons-react";
+
+import { HardDrive, Trash2, Play } from "lucide-react";
 
 export {
   EngineeringIcon,
@@ -35,5 +38,8 @@ export {
   Trash2,
   ScanFace,
   Cleaning,
-  ChartDots
+  ChartDots,
+  Play,
+  CameraUp,
+  CameraPlus
 };

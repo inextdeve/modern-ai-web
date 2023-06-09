@@ -7,7 +7,7 @@ export default function VariantButtonGroup() {
   const dispatch = useDispatch();
 
   const openDialog = () => {
-    dispatch(serversActions.setOpenCreateServerDialog());
+    dispatch(serversActions.setCreateServerDialog());
   };
 
   return (

@@ -7,7 +7,7 @@ import {
   IconUserPlus,
 
 
-} from "@tabler/icons";
+} from "@tabler/icons-react";
 import { ServerIcon, Users, ChartDots } from "src/components/shared/Icons";
 import { uniqueId } from "lodash";
 

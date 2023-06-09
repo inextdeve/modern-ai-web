@@ -4,27 +4,35 @@ const { reducer, actions } = createSlice({
   name: "servers",
   initialState: {
     items: [],
-    selectedServer: null,
-    openCreateServerDialog: false,
+    selected: null,
+    cloneSelected: null,
+    createServerDialog: false,
   },
   reducers: {
     add(state, action) {
       state.items = [...state.items, ...action.payload];
     },
-    setSelectedServer(state, action) {
-      state.selectedServer = state.items.filter(
+    setSelected(state, action) {
+
+      if (action.payload === null) {
+        state.selected = null;
+        state.cloneSelected = null;
+        return;
+      }
+
+      state.selected = state.items.filter(
         (item) => item.id === action.payload
       )[0];
+      state.cloneSelected = state.items.filter(
+        (item) => item.id === action.payload
+      )[0];
+
     },
-    editServer(state, action) {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) return action.payload;
-        return item;
-      });
-      state.selectedServer = action.payload;
+    editCurrent(state, action) {
+      state.selected = { ...state.selected, ...action.payload };
     },
-    setOpenCreateServerDialog(state) {
-      state.openCreateServerDialog = !state.openCreateServerDialog;
+    setCreateServerDialog(state) {
+      state.createServerDialog = !state.createServerDialog;
     },
   },
 });

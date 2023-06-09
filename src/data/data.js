@@ -1,6 +1,7 @@
 const cameras = [
   {
     id: 98239,
+    enabled: true,
     name: "camera-outdoor",
     address: "10.10.10.10",
     brand: "html",
@@ -10,6 +11,7 @@ const cameras = [
       username: "admin",
       password: "admin",
     },
+    streamLink: "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
     streams: [{ format: "h264" }],
     rights: [{ group: "administrators", surveillance: true, archive: true }],
     sound: true,
@@ -20,14 +22,15 @@ const cameras = [
     },
     motionDetector: false,
     analytics: {
-      workerPresence: false,
-      trashUnloading: true,
-      qualityOfCleaning: false,
+      0: false,
+      1: true,
+      2: false,
     },
   },
   {
     id: 5465,
     name: "camera-indoou",
+    enabled: true,
     address: "10.10.140.10",
     brand: "rtsp",
     type: "camera",
@@ -36,6 +39,7 @@ const cameras = [
       username: "user",
       password: "admin",
     },
+    streamLink: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
     streams: [{ format: "h265" }],
     rights: [{ group: "administrators", surveillance: false, archive: true }],
     sound: true,
@@ -46,9 +50,9 @@ const cameras = [
     },
     motionDetector: false,
     analytics: {
-      workerPresence: true,
-      trashUnloading: true,
-      qualityOfCleaning: false,
+      0: true,
+      1: true,
+      2: false,
     },
   },
 ];
@@ -137,4 +141,38 @@ const analytics = [
   },
 ];
 
-export { cameras, servers, users, groups, analytics };
+const cameraInit = {
+  id: 100000000,
+  enabled: false,
+  name: "",
+  address: "",
+  brand: "rtsp",
+  type: "camera",
+  model: "rtsp",
+  auth: {
+    username: "",
+    password: "",
+  },
+  streams: [{ format: "h264" }],
+  rights: [{ group: "administrators", surveillance: true, archive: true }],
+  sound: false,
+  narrowBandwidth: false,
+  archive: {
+    recAndArch: false,
+    recMode: "alwayson",
+  },
+  motionDetector: false,
+  analytics: {
+    0: false,
+    1: false,
+    2: false,
+  },
+}
+const serverInit = {
+  id: 1000000,
+  name: "",
+  address: "",
+  port: "",
+}
+
+export { cameras, servers, users, groups, analytics, cameraInit, serverInit };

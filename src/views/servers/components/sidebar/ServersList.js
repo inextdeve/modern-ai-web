@@ -25,7 +25,7 @@ const MenuItem = ({ title, icon, selected, onClick }) => (
   </ListItemButton>
 );
 
-const ServersList = ({}) => {
+const ServersList = () => {
   const dispatch = useDispatch();
   const [serversOpen, setServersOpen] = useState(false);
 
@@ -35,7 +35,7 @@ const ServersList = ({}) => {
 
   const allServers = useSelector((state) => state.servers.items);
 
-  const selectedServer = useSelector((state) => state.servers.selectedServer);
+  const selectedServer = useSelector((state) => state.servers.selected);
 
   return (
     <List>
@@ -52,7 +52,7 @@ const ServersList = ({}) => {
                 title={name}
                 icon={<HardDrive />}
                 selected={id === selectedServer?.id}
-                onClick={() => dispatch(serversActions.setSelectedServer(id))}
+                onClick={() => dispatch(serversActions.setSelected(id))}
               />
             );
           })}

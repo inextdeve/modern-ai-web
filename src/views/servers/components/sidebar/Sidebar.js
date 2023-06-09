@@ -3,7 +3,7 @@ import ServersList from "./ServersList";
 import SearchBox from "./SearchBox";
 import BottomButtons from "./BottomButtons";
 
-const Sidebar = ({}) => {
+const Sidebar = () => {
   return (
     <>
       <Box>

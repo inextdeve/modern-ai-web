@@ -9,25 +9,47 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import PageContainer from "src/components/container/PageContainer";
 import { serversActions } from "../../store";
 import ConfigPanel from "./components/configPanel/configPanel";
 import Sidebar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
+import { serverInit } from "src/data/data";
 
 const Servers = () => {
-  const dispatch = useDispatch();
 
-  const open = useSelector((state) => state.servers.openCreateServerDialog);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState("");
+  const [error, setError] = useState({ error: false, helperText: "" });
+
+  const open = useSelector((state) => state.servers.createServerDialog);
+  const close = () => dispatch(serversActions.setCreateServerDialog())
 
   const selectedServer = useSelector((state) => state.servers.selectedServer);
 
-  const [value, setValue] = useState(""); //Mean for the new created server
+  const addServer = () => {
+    if (value.trim().length < 3) {
+      setError({ error: true, helperText: "Enter a valid name" })
+      return;
+    } else {
+      setError({ error: false, helperText: "" })
+    }
 
-  const handleAddServer = () => {
-    // setTimeout(() => {}, 4000);
-    // dispatch(serversActions.add({}));
-  };
+    toast.promise(new Promise((resolve) => resolve()), {
+      pending: "Creating",
+      success: "Created",
+      error: "Error Try Again",
+    });
+
+    const fetchId = { id: 384733 };//await a fetch for create a server in db
+    serverInit.id = fetchId.id;
+    serverInit.name = value;
+    // console.log(serverInit)
+    dispatch(serversActions.add([serverInit]));
+    dispatch(serversActions.setSelected(fetchId.id));
+    close();
+  }
 
   return (
     <>
@@ -43,16 +65,15 @@ const Servers = () => {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="Name"
+              {...error}
             />
             <Stack direction="row" gap={2}>
-              <Button variant="contained" onClick={handleAddServer}>
+              <Button variant="contained" onClick={addServer}>
                 Add
               </Button>
               <Button
                 variant="outlined"
-                onClick={() =>
-                  dispatch(serversActions.setOpenCreateServerDialog())
-                }
+                onClick={close}
               >
                 Close
               </Button>

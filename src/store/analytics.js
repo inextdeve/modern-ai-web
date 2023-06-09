@@ -4,17 +4,21 @@ const { reducer, actions } = createSlice({
   name: "analytics",
   initialState: {
     items: [],
-    selectedModule: null,
+    selected: null,
+    createAnalyticsDialog: false
   },
   reducers: {
     add(state, action) {
       state.items = [...state.items, ...action.payload];
     },
-    setSelectedModule(state, action) {
-      state.selectedModule = state.items.filter(
+    setSelected(state, action) {
+      state.selected = state.items.filter(
         (item) => item.id === action.payload
       )[0];
     },
+    setCreateAnalyticsDialog(state, action) {
+      state.createAnalyticsDialog = !state.createAnalyticsDialog
+    }
   },
 });
 

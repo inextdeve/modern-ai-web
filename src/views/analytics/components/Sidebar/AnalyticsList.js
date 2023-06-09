@@ -41,7 +41,7 @@ const AnalyticsList = () => {
   const allModules = useSelector((state) => state.analytics.items);
 
   const selectedModule = useSelector(
-    (state) => state.analytics.selectedModule
+    (state) => state.analytics.selected
   );
 
   const icons = {
@@ -65,7 +65,7 @@ const AnalyticsList = () => {
                 title={name}
                 icon={icons[id]}
                 selected={id === selectedModule?.id}
-                onClick={() => dispatch(analyticsActions.setSelectedModule(id))}
+                onClick={() => dispatch(analyticsActions.setSelected(id))}
               />
             );
           })}

@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { Button, Stack } from "@mui/material/";
-import { serversActions } from "src/store";
+import { analyticsActions } from "src/store";
 import { SquarePlus, FolderPlus } from "src/components/shared/Icons";
 
 export default function VariantButtonGroup() {
   const dispatch = useDispatch();
   const openDialog = () => {
-    dispatch(serversActions.setOpenCreateServerDialog());
+    dispatch(analyticsActions.setCreateAnalyticsDialog());
   };
   return (
 

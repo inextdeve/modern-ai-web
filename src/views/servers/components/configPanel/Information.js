@@ -9,12 +9,13 @@ import {
 import { serversActions } from "src/store";
 import Title from "src/components/shared/Title";
 
-const Information = ({}) => {
+const Information = () => {
   const dispatch = useDispatch();
-  const selectedServer = useSelector((state) => state.servers.selectedServer);
 
-  const handleChange = (prop, value) => {
-    dispatch(serversActions.editServer({ ...selectedServer, [prop]: value }));
+  const selectedServer = useSelector((state) => state.servers.selected);
+
+  const handleChange = (property, value) => {
+    dispatch(serversActions.editCurrent({ [property]: value }));
   };
 
   return (
@@ -29,10 +30,8 @@ const Information = ({}) => {
               label="Adress"
               value={selectedServer?.address}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
+              helperText="IPv4 or Host"
             />
-            <FormHelperText id="my-helper-text">
-              We'll never share your email.
-            </FormHelperText>
           </Box>
           <Box>
             <TextField

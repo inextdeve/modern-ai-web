@@ -25,7 +25,7 @@ const EditDialog = () => {
   );
   const open = useSelector((state) => state.users.openEditUserDialog);
 
-  const [passwordValue, setPasswordValue] = useState({ pass: "", confirm: "" });
+  const [passwordValue] = useState({ pass: "", confirm: "" });
   const [openPassEdit, setOpenPassEdit] = useState(false);
 
   return (

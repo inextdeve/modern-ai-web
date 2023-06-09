@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Typography, Avatar } from '@mui/material';
-import { IconArrowUpLeft } from '@tabler/icons';
+import { countRate } from 'src/helpers/util';
 
 import DashboardCard from '../../../components/shared/DashboardCard';
+import { useSelector } from 'react-redux';
+import { CameraUp } from 'src/components/shared/Icons';
 
-const YearlyBreakup = () => {
+const EnabledCameras = () => {
+
+  // all Cameras
+  const cameras = useSelector(state => state.cameras.items);
+
+  // Chart data
+  const [seriescolumnchart, setSeriescolumnchart] = useState([]);
+
+  // Update state
+  useEffect(() => {
+    const enabledCameras = cameras.filter(camera => camera.enabled).length;
+    const disabledCameras = cameras.filter(camera => !camera.enabled).length;
+    setSeriescolumnchart([enabledCameras, disabledCameras]);
+  }, [])
+
+
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -59,25 +76,26 @@ const YearlyBreakup = () => {
       },
     ],
   };
-  const seriescolumnchart = [38, 40, 25];
+
+
 
   return (
-    <DashboardCard title="Yearly Breakup">
+    <DashboardCard title="Enabled Cameras">
       <Grid container spacing={3}>
         {/* column */}
         <Grid item xs={7} sm={7}>
           <Typography variant="h3" fontWeight="700">
-            $36,358
+            {cameras.filter(camera => camera.enabled).length}
           </Typography>
           <Stack direction="row" spacing={1} mt={1} alignItems="center">
             <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
-              <IconArrowUpLeft width={20} color="#39B69A" />
+              <CameraUp width={20} color="#39B69A" />
             </Avatar>
             <Typography variant="subtitle2" fontWeight="600">
-              +9%
+              {countRate(cameras.length, cameras.filter(camera => camera.enabled).length)}%
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              last year
+              Enabled rate
             </Typography>
           </Stack>
           <Stack spacing={3} mt={5} direction="row">
@@ -86,7 +104,7 @@ const YearlyBreakup = () => {
                 sx={{ width: 9, height: 9, bgcolor: primary, svg: { display: 'none' } }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
-                2022
+                Enabled
               </Typography>
             </Stack>
             <Stack direction="row" spacing={1} alignItems="center">
@@ -94,7 +112,7 @@ const YearlyBreakup = () => {
                 sx={{ width: 9, height: 9, bgcolor: primarylight, svg: { display: 'none' } }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
-                2023
+                Disabled
               </Typography>
             </Stack>
           </Stack>
@@ -113,4 +131,4 @@ const YearlyBreakup = () => {
   );
 };
 
-export default YearlyBreakup;
+export default EnabledCameras;

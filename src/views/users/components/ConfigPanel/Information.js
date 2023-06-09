@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Box,
   TableContainer,
@@ -37,10 +37,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Information = () => {
-  const dispatch = useDispatch();
 
   const [editGroup, setEditGroup] = useState(false);
-  const [groupRights, setGroupRights] = useState({});
 
   const selectedUser = useSelector(
     (state) => state.users.selectedUser

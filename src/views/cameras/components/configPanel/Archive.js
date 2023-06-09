@@ -14,7 +14,7 @@ import { camerasActions } from "src/store";
 import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 
-const Archive = ({}) => {
+const Archive = () => {
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);

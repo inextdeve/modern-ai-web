@@ -9,13 +9,12 @@ import {
   FormGroup,
   FormControlLabel,
 } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 import { camerasActions } from "src/store";
 
-const Connection = ({}) => {
+const Connection = ({ }) => {
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
