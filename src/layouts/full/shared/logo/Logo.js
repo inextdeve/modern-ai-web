@@ -14,9 +14,9 @@ const LinkStyled = styled("p")(() => ({
 const Logo = () => {
   return (
     <LinkStyled>
-      <Typography sx={{ fontSize: "2rem", fontWeight: "900" }}>
-        Balady .AI
-      </Typography>
+      <LinkStyled to="/">
+        <LogoDark height={70} />
+      </LinkStyled>
     </LinkStyled>
   );
 };
