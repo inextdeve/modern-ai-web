@@ -1,4 +1,6 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Grid, Box, Card, Stack, Typography } from '@mui/material';
 
@@ -8,7 +10,14 @@ import Logo from 'src/layouts/full/shared/logo/Logo';
 import AuthLogin from './auth/AuthLogin';
 
 const Login2 = () => {
-  
+
+  const { loading, userInfo, error } = useSelector((state) => state.auth)
+
+  // redirect authenticated user to profile screen
+  if (userInfo) {
+    return <Navigate to="/" />
+  }
+
   return (
     <PageContainer title="Login" description="this is Login page">
       <Box
@@ -44,13 +53,13 @@ const Login2 = () => {
               <AuthLogin
                 subtext={
                   <Typography variant="subtitle1" textAlign="center" color="textSecondary" mb={1}>
-                    Your Social Campaigns
+                    Balady Ai
                   </Typography>
                 }
                 subtitle={
                   <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
-                    <Typography color="textSecondary" variant="h6" fontWeight="500">
-                      New to Modernize?
+                    {/* <Typography color="textSecondary" variant="h6" fontWeight="500">
+                      New to Balady Ai?
                     </Typography>
                     <Typography
                       component={Link}
@@ -62,7 +71,7 @@ const Login2 = () => {
                       }}
                     >
                       Create an account
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                 }
               />

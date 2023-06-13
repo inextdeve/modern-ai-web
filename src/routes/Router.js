@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Loadable from "../layouts/full/shared/loadable/Loadable";
+import ProtectedRoute from "src/components/shared/ProtectedRoute";
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import("../layouts/full/FullLayout")));
@@ -34,7 +35,7 @@ const Analytics = Loadable(lazy(() => import("../views/analytics/Analytics")));
 const Router = [
   {
     path: "/",
-    element: <FullLayout />,
+    element: <ProtectedRoute><FullLayout /></ProtectedRoute>,
     children: [
       { path: "/", element: <Navigate to="/dashboard" /> },
       { path: "/dashboard", exact: true, element: <Dashboard /> },

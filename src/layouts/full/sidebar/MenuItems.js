@@ -53,29 +53,11 @@ const Menuitems = [
   },
   {
     navlabel: true,
-    subheader: "Auth",
-  },
-  {
-    id: uniqueId(),
-    title: "Login",
-    icon: IconLogin,
-    href: "/auth/login",
-  },
-  {
-    id: uniqueId(),
-    title: "Register",
-    icon: IconUserPlus,
-    href: "/auth/register",
+    subheader: "Settings",
   },
   {
     navlabel: true,
     subheader: "Extra",
-  },
-  {
-    id: uniqueId(),
-    title: "Icons",
-    icon: IconMoodHappy,
-    href: "/icons",
   },
   {
     id: uniqueId(),

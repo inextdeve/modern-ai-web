@@ -11,3 +11,5 @@ root.render(
     </BrowserRouter>
   </Suspense>
 );
+//Nataliefriedman insta
+//https://blog.logrocket.com/handling-user-authentication-redux-toolkit/
