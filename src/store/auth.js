@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const userToken = localStorage.getItem("userToken")
   ? localStorage.getItem("userToken")
@@ -28,8 +29,6 @@ const userLogin = createAsyncThunk(
       };
 
       const response = await fetch(`${backendURL}/auth/login`, config);
-
-      if (!response.ok) throw new Error(await response.json().error);
 
       const data = await response.json();
 

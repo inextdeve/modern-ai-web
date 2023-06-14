@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as LogoDark } from "src/assets/images/logos/dark-logo.svg";
 import { styled, Typography } from "@mui/material";
 
-const LinkStyled = styled("p")(() => ({
+const LinkStyled = styled(Link)(() => ({
   height: "70px",
   width: "180px",
   overflow: "hidden",
@@ -13,10 +13,8 @@ const LinkStyled = styled("p")(() => ({
 
 const Logo = () => {
   return (
-    <LinkStyled>
-      <LinkStyled to="/">
+    <LinkStyled to="/">
         <LogoDark height={70} />
-      </LinkStyled>
     </LinkStyled>
   );
 };
