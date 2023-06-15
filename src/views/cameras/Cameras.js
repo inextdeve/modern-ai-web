@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   DialogTitle,
@@ -8,7 +8,7 @@ import {
   Button,
   Stack,
   Grid,
-  CircularProgress
+  CircularProgress,
 } from "@mui/material";
 import { toast } from "react-toastify";
 import PageContainer from "src/components/container/PageContainer";
@@ -17,15 +17,25 @@ import SideBar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
 import { camerasActions } from "src/store";
 import { cameraInit } from "src/data/data";
-
+import { useGetCamerasQuery } from "src/services/dataInitialization/getCameras";
+import SkeletonLoader from "src/components/shared/Skeleton";
 
 const Cameras = () => {
 
   const dispatch = useDispatch();
 
+  const {data, isFetching} = useGetCamerasQuery();
+
   const [value, setValue] = useState("");
 
   const [error, setError] = useState({ error: false, helperText: "" });
+
+  useEffect(() => {
+    if (data) {
+      dispatch(camerasActions.add(data))
+    }
+  },[dispatch, data])
+
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera)
   const open = useSelector(state => state.cameras.createCameraDialog);
@@ -79,12 +89,12 @@ const Cameras = () => {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <DashboardCard>
-              <SideBar />
+              {isFetching ? <SkeletonLoader/> : <SideBar />}
             </DashboardCard>
           </Grid>
           <Grid item xs={8}>
             <DashboardCard title={selectedCamera?.name}>
-              <ConfigPanel />
+              {isFetching ? <SkeletonLoader /> : <ConfigPanel />}
             </DashboardCard>
           </Grid>
         </Grid>

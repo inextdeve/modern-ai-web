@@ -35,7 +35,7 @@ const Analytics = Loadable(lazy(() => import("../views/analytics/Analytics")));
 const Router = [
   {
     path: "/",
-    element: <ProtectedRoute><FullLayout /></ProtectedRoute>,
+    element: <FullLayout />,
     children: [
       { path: "/", element: <Navigate to="/dashboard" /> },
       { path: "/dashboard", exact: true, element: <Dashboard /> },

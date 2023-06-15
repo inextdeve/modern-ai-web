@@ -5,7 +5,8 @@ const { reducer, actions } = createSlice({
   initialState: {
     items: [],
     selected: null,
-    createAnalyticsDialog: false
+    createAnalyticsDialog: false,
+    loading: false,
   },
   reducers: {
     add(state, action) {

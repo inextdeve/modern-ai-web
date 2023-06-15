@@ -7,6 +7,7 @@ const { reducer, actions } = createSlice({
     selectedCamera: null,
     cloneSelected: null,
     createCameraDialog: false,
+    loading: false,
   },
   reducers: {
     add(state, action) {

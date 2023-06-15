@@ -7,6 +7,7 @@ const { reducer, actions } = createSlice({
     selected: null,
     cloneSelected: null,
     createServerDialog: false,
+    loading: false,
   },
   reducers: {
     add(state, action) {

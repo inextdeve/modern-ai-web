@@ -9,6 +9,7 @@ const { reducer, actions } = createSlice({
     selectedGroup: null,
     openCreateUserDialog: false,
     openEditUserDialog: false,
+    loading: false,
   },
   reducers: {
     add(state, action) {

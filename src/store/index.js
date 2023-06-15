@@ -6,6 +6,7 @@ import { usersReducer as users } from "./users";
 import { analyticsReducer as analytics } from "./analytics";
 import { authReducer as auth } from "./auth";
 import { tokenAuth } from "src/services/tokenAuth";
+import { getCameras, getAnalyticModules, getServers, getUsers } from "src/services/dataInitialization";
 
 const reducer = combineReducers({
   cameras,
@@ -14,6 +15,10 @@ const reducer = combineReducers({
   analytics,
   auth,
   [tokenAuth.reducerPath]: tokenAuth.reducer,
+  [getCameras.reducerPath]: getCameras.reducer,
+  [getAnalyticModules.reducerPath]: getAnalyticModules.reducer,
+  [getServers.reducerPath]: getServers.reducer,
+  [getUsers.reducerPath]: getUsers.reducer
 });
 
 export { camerasActions } from "./cameras";
@@ -25,7 +30,7 @@ export { authActions } from "./auth";
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(tokenAuth.middleware),
+    getDefaultMiddleware().concat(tokenAuth.middleware, getCameras.middleware,getAnalyticModules.middleware, getServers.middleware, getUsers.middleware),
 });
 
 export default store;
