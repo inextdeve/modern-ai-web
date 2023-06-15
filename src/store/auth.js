@@ -32,11 +32,14 @@ const userLogin = createAsyncThunk(
 
       const data = await response.json();
 
+      if (data.error) throw new Error(data.error);
+
       // store user's token in local storage
       localStorage.setItem("userToken", data.userToken);
       return data;
     } catch (error) {
       // return custom error message from API if any
+      toast.error(error.message);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
