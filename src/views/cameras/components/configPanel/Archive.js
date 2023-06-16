@@ -34,7 +34,7 @@ const Archive = () => {
           name="recAndArch"
           control={<CSwitch />}
           label="Recording and viewing archive"
-          checked={selectedCamera?.archive.recAndArch}
+          checked={Boolean(selectedCamera?.archive.recAndArch)}
           onChange={(e) => handleChange(e.target.name, e.target.checked)}
         />
       </FormGroup>

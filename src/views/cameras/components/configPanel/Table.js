@@ -54,7 +54,7 @@ const BasicTable = () => {
               <TableCell align="right">
                 <Checkbox
                   name="surveillance"
-                  checked={row.surveillance}
+                  checked={Boolean(row.surveillance)}
                   onChange={(e) =>
                     handleChange(e.target.name, e.target.checked, index)
                   }
@@ -63,7 +63,7 @@ const BasicTable = () => {
               <TableCell align="right">
                 <Checkbox
                   name="archive"
-                  checked={row.archive}
+                  checked={Boolean(row.archive)}
                   onChange={(e) =>
                     handleChange(e.target.name, e.target.checked, index)
                   }

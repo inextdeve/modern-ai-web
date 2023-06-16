@@ -37,7 +37,6 @@ const CamerasList = () => {
     setCameraOpen((prev) => !prev);
   };
 
-
   return (
     <List>
       <ListItemButton onClick={handleClick}>

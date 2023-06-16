@@ -1,4 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+
+const backendURL = "http://localhost:3000";
+export const createCamera = createAsyncThunk(
+  "cameras/create",
+  async ({ name }, { rejectWithValue, getState }) => {
+    const token = getState().auth.userToken;
+    try {
+      // configure header's Content-Type as JSON
+      const config = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name }),
+      };
+
+      const response = await fetch(`${backendURL}/api/camera`, config);
+
+      const data = await response.json();
+
+      if (data.error) throw new Error(data.error);
+
+      return data;
+    } catch (error) {
+      // return custom error message from API if any
+      toast.error(error.message);
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 
 const { reducer, actions } = createSlice({
   name: "cameras",
@@ -31,7 +67,22 @@ const { reducer, actions } = createSlice({
     },
     setCreateCameraDialog(state) {
       state.createCameraDialog = !state.createCameraDialog;
-    }
+    },
+    setLoading(state, { payload }) {
+      state.loading = payload;
+    },
+  },
+  extraReducers: {
+    [createCamera.pending]: (state) => {
+      toast("Loading");
+    },
+    [createCamera.fulfilled]: (state, { payload }) => {
+      state.selectedCamera = payload;
+      state.cloneSelected = payload;
+    },
+    [createCamera.rejected]: (state, { payload }) => {
+      toast("error");
+    },
   },
 });
 

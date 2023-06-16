@@ -14,7 +14,7 @@ import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 import { camerasActions } from "src/store";
 
-const Connection = ({ }) => {
+const Connection = ({}) => {
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
@@ -142,14 +142,14 @@ const Connection = ({ }) => {
             name="sound"
             control={<CSwitch />}
             label="Sound reception"
-            checked={selectedCamera?.sound}
+            checked={Boolean(selectedCamera?.sound)}
             value={selectedCamera?.sound}
           />
           <FormControlLabel
             name="narrowBandwidth"
             control={<CSwitch />}
             label="Narrow bandwidth camera"
-            checked={selectedCamera?.narrowBandwidth}
+            checked={Boolean(selectedCamera?.narrowBandwidth)}
             value={selectedCamera?.narrowBandwidth}
           />
           <FormControlLabel

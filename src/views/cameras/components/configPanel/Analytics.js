@@ -32,7 +32,7 @@ const Analytics = () => {
             name="0"
             icon={EngineeringIcon}
             text="Wroker presence"
-            checked={selectedCamera?.analytics[0]}
+            checked={Boolean(selectedCamera?.analytics[0])}
             onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>
@@ -41,7 +41,7 @@ const Analytics = () => {
             name="1"
             icon={CleaningServicesOutlinedIcon}
             text="Quality of cleaning"
-            checked={selectedCamera?.analytics[1]}
+            checked={Boolean(selectedCamera?.analytics[1])}
             onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>
@@ -50,7 +50,7 @@ const Analytics = () => {
             name="2"
             icon={IconTrash}
             text="Trash cleaning"
-            checked={selectedCamera?.analytics[2]}
+            checked={Boolean(selectedCamera?.analytics[2])}
             onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>

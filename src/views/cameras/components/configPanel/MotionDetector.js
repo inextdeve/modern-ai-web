@@ -35,7 +35,7 @@ const MotionDetector = ({}) => {
       <FormGroup sx={{ my: 4 }}>
         <FormControlLabel
           name="motionDetector"
-          checked={selectedCamera?.motionDetector}
+          checked={Boolean(selectedCamera?.motionDetector)}
           control={<CSwitch />}
           label="Motion Detector"
           onChange={handleChange}

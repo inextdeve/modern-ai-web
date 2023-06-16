@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
-import { Box, Switch, Typography, Tabs, Tab, Button, FormControlLabel } from "@mui/material";
+import {
+  Box,
+  Switch,
+  Typography,
+  Tabs,
+  Tab,
+  Button,
+  FormControlLabel,
+} from "@mui/material";
 import Connection from "./Connection";
 import Rights from "./Rights";
 import Archive from "./Archive";
@@ -37,7 +45,7 @@ function a11yProps(index) {
 }
 
 const ConfigPanel = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [updated, setUpdated] = useState(false);
 
@@ -57,15 +65,22 @@ const ConfigPanel = () => {
     <>
       {selectedCamera !== null ? (
         <>
-          <Box component="header">
+          <Box
+            component="header"
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
             <FormControlLabel
               name="enabled"
               control={<Switch />}
-              checked={selectedCamera.enabled}
+              checked={Boolean(selectedCamera.enabled)}
               value={selectedCamera.enabled}
-              onChange={(e) => dispatch(camerasActions.editCurrent({ enabled: e.target.checked }))}
-
+              onChange={(e) =>
+                dispatch(
+                  camerasActions.editCurrent({ enabled: e.target.checked })
+                )
+              }
             />
+            {updated && <Button variant="contained">Update</Button>}
           </Box>
           <Box>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -96,7 +111,6 @@ const ConfigPanel = () => {
             <TabPanel value={value} index={4}>
               <Analytics />
             </TabPanel>
-            {updated && <Button variant="contained">Update</Button>}
           </Box>
         </>
       ) : null}
