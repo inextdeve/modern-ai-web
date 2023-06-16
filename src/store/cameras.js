@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -26,7 +27,40 @@ export const createCamera = createAsyncThunk(
       return data;
     } catch (error) {
       // return custom error message from API if any
-      toast.error(error.message);
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const updateCamera = createAsyncThunk(
+  "cameras/update",
+  async (_, { rejectWithValue, getState }) => {
+    const token = getState().auth.userToken;
+    const camera = getState().cameras.selectedCamera;
+    try {
+      // configure header's Content-Type as JSON
+      const config = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(camera),
+      };
+
+      const response = await fetch(`${backendURL}/api/camera`, config);
+
+      const data = await response.json();
+
+      if (data.error) throw new Error(data.error);
+
+      return data;
+    } catch (error) {
+      // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -73,6 +107,7 @@ const { reducer, actions } = createSlice({
     },
   },
   extraReducers: {
+    //Create Camera
     [createCamera.pending]: (state) => {
       toast("Loading");
     },
@@ -81,6 +116,22 @@ const { reducer, actions } = createSlice({
       state.cloneSelected = payload;
     },
     [createCamera.rejected]: (state, { payload }) => {
+      toast("error");
+    },
+    //Update Camera
+    [updateCamera.pending]: (state) => {
+      toast("Loading");
+    },
+    [updateCamera.fulfilled]: (state, { payload }) => {
+      state.items.map((item) => {
+        if (item.id === selectedCamera.id) {
+          return {...selectedCamera}
+        }
+        return item;
+      })
+      state.cloneSelected = selectedCamera;
+    },
+    [updateCamera.rejected]: (state, { payload }) => {
       toast("error");
     },
   },

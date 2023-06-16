@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 const ProtectedRoute = ({ children }) => {
-    const { userInfo } = useSelector((state) => state.auth)
+    const { userToken } = useSelector((state) => state.auth)
 
     // show unauthorized screen if no user is found in redux store
-    if (!userInfo) {
+    if (!userToken) {
         return <Navigate to="/auth/login" />
     }
 
