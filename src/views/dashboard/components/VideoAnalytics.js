@@ -33,9 +33,9 @@ const VideoAnalytics = () => {
     }
 
     setViewedCamera(
-      enabledCameras.filter(
-        (camera) => camera.analytics[selectedModule] === true
-      )
+      enabledCameras.filter((camera) => {
+        return Boolean(camera.analytics[selectedModule]) === true;
+      })
     );
   }, [selectedModule]);
 

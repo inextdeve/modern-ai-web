@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Box,
-  TableContainer,
-  Table,
-  TableBody,
-  Paper,
-} from "@mui/material";
+import { Box, TableContainer, Table, TableBody, Paper } from "@mui/material";
 import {
   StyledTableCell,
   StyledTableRow,
@@ -15,15 +9,13 @@ import {
 import { camerasActions } from "src/store";
 import Title from "src/components/shared/Title";
 
-
 const Information = () => {
   const dispatch = useDispatch();
-  const selectedModule = useSelector(
-    (state) => state.analytics.selected
-  );
-
+  const selectedModule = useSelector((state) => state.analytics.selected);
 
   const allCameras = useSelector((state) => state.cameras.items);
+
+  const enabledCameras = allCameras.filter((camera) => Boolean(camera.enabled));
 
   function createData(key, value) {
     return { key, value };
@@ -34,32 +26,35 @@ const Information = () => {
       return [
         createData(
           "Camera with module",
-          selectedModule.camerasWithModule.length
+          enabledCameras.filter(({ analytics }) =>
+            Boolean(analytics[selectedModule.id])
+          ).length
         ),
         createData(
           "Enabled Cameras",
           <>
-            {selectedModule.enabledCameras.map((id) => (
-              <StyledTableRow key={id}>
-                <StyledTableCell component="th" scope="row">
-                  <Link
-                    to="/cameras"
-                    onClick={() =>
-                      dispatch(camerasActions.setSelectedCamera(id))
-                    }
-                    style={{
-                      textDecoration: "underline",
-                      fontWeight: "bold",
-                      color: "#f3581b",
-                    }}
-                  >
-                    {
-                      allCameras.filter((camera) => camera.id === id)[0].name
-                    }
-                  </Link>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {/* GHadi ital3o kamlat filtri 3la hsab li mactivi fiha had lmodule */}
+            {enabledCameras
+              .filter(({ analytics }) => Boolean(analytics[selectedModule.id]))
+              .map(({ id, name }) => (
+                <StyledTableRow key={id}>
+                  <StyledTableCell component="th" scope="row">
+                    <Link
+                      to="/cameras"
+                      onClick={() =>
+                        dispatch(camerasActions.setSelectedCamera(id))
+                      }
+                      style={{
+                        textDecoration: "underline",
+                        fontWeight: "bold",
+                        color: "#f3581b",
+                      }}
+                    >
+                      {name}
+                    </Link>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </>
         ),
       ];

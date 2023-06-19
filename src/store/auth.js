@@ -5,7 +5,7 @@ const userToken = localStorage.getItem("userToken")
   ? localStorage.getItem("userToken")
   : null;
 
-const backendURL = "http://localhost:3000";
+const backendURL = "";
 
 const initialState = {
   loading: false,

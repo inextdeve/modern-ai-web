@@ -29,18 +29,9 @@ const Analytics = () => {
       <Grid container gap={2}>
         <Grid item xs={4}>
           <ModuleCard
-            name="0"
+            name="1"
             icon={EngineeringIcon}
             text="Wroker presence"
-            checked={Boolean(selectedCamera?.analytics[0])}
-            onChange={(e) => handleChange(e.target.name, e.target.checked)}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <ModuleCard
-            name="1"
-            icon={CleaningServicesOutlinedIcon}
-            text="Quality of cleaning"
             checked={Boolean(selectedCamera?.analytics[1])}
             onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
@@ -49,8 +40,17 @@ const Analytics = () => {
           <ModuleCard
             name="2"
             icon={IconTrash}
-            text="Trash cleaning"
+            text="Trash Unloading"
             checked={Boolean(selectedCamera?.analytics[2])}
+            onChange={(e) => handleChange(e.target.name, e.target.checked)}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <ModuleCard
+            name="3"
+            icon={CleaningServicesOutlinedIcon}
+            text="Quality of cleaning"
+            checked={Boolean(selectedCamera?.analytics[3])}
             onChange={(e) => handleChange(e.target.name, e.target.checked)}
           />
         </Grid>

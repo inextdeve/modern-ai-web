@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   DialogTitle,
@@ -8,15 +8,12 @@ import {
   Button,
   Stack,
   Grid,
-  CircularProgress,
 } from "@mui/material";
-import { toast } from "react-toastify";
 import PageContainer from "src/components/container/PageContainer";
 import ConfigPanel from "./components/configPanel/ConfigPanel";
 import SideBar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
 import { camerasActions } from "src/store";
-import { cameraInit } from "src/data/data";
 import SkeletonLoader from "src/components/shared/SkeletonLoader";
 import { createCamera } from "src/store/cameras";
 
@@ -39,14 +36,8 @@ const Cameras = () => {
       setError({ error: false, helperText: "" });
     }
 
-    dispatch(createCamera(value));
-
-    const fetchId = { id: 384733 }; //await a fetch for create a cemera in db
-    cameraInit.id = fetchId.id;
-    cameraInit.name = value;
-    console.log(cameraInit);
-    dispatch(camerasActions.add([cameraInit]));
-    dispatch(camerasActions.setSelectedCamera(fetchId.id));
+    dispatch(createCamera({ name: value }));
+    setValue("");
     close();
   };
 
@@ -69,7 +60,6 @@ const Cameras = () => {
             <Stack direction="row" gap={2}>
               <Button variant="contained" onClick={addCamera}>
                 Add
-                <CircularProgress color="success" size={20} sx={{ ml: 2 }} />
               </Button>
               <Button variant="outlined" onClick={close}>
                 Close

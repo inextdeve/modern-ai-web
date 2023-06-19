@@ -6,7 +6,7 @@ export const getAnalyticModules = createApi({
   reducerPath: "getAnalyticModules",
   baseQuery: fetchBaseQuery({
     // base url of backend API
-    baseUrl: "http://localhost:3000/",
+    baseUrl: "",
     // prepareHeaders is used to configure the header of every request and gives access to getState which we use to include the token from the store
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.userToken;

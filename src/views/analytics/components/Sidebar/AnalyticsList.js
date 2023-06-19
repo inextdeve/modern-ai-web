@@ -40,14 +40,12 @@ const AnalyticsList = () => {
 
   const allModules = useSelector((state) => state.analytics.items);
 
-  const selectedModule = useSelector(
-    (state) => state.analytics.selected
-  );
+  const selectedModule = useSelector((state) => state.analytics.selected);
 
   const icons = {
-    0: <ScanFace />,
-    1: <Trash2 />,
-    2: <Cleaning />,
+    1: <ScanFace />,
+    2: <Trash2 />,
+    3: <Cleaning />,
   };
 
   return (

@@ -16,6 +16,7 @@ import Archive from "./Archive";
 import MotionDetector from "./MotionDetector";
 import Analytics from "./Analytics";
 import { camerasActions } from "src/store";
+import { updateCamera } from "src/store/cameras";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,7 +60,7 @@ const ConfigPanel = () => {
 
   useEffect(() => {
     setUpdated(!_.isEqual(cloneSelected, selectedCamera));
-  }, [selectedCamera]);
+  }, [selectedCamera, cloneSelected]);
 
   return (
     <>
@@ -80,7 +81,16 @@ const ConfigPanel = () => {
                 )
               }
             />
-            {updated && <Button variant="contained">Update</Button>}
+            {updated && (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  dispatch(updateCamera());
+                }}
+              >
+                Update
+              </Button>
+            )}
           </Box>
           <Box>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
