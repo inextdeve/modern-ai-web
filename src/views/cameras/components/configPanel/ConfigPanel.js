@@ -15,6 +15,7 @@ import Rights from "./Rights";
 import Archive from "./Archive";
 import MotionDetector from "./MotionDetector";
 import Analytics from "./Analytics";
+import Settings from "./Settings";
 import { camerasActions } from "src/store";
 import { updateCamera } from "src/store/cameras";
 
@@ -104,6 +105,7 @@ const ConfigPanel = () => {
                 <Tab label="Archive" {...a11yProps(2)} />
                 <Tab label="Motion Detector" {...a11yProps(3)} />
                 <Tab label="Analytics" {...a11yProps(4)} />
+                <Tab label="Settings" {...a11yProps(5)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
@@ -120,6 +122,9 @@ const ConfigPanel = () => {
             </TabPanel>
             <TabPanel value={value} index={4}>
               <Analytics />
+            </TabPanel>
+            <TabPanel value={value} index={5}>
+              <Settings />
             </TabPanel>
           </Box>
         </>

@@ -70,6 +70,38 @@ export const updateCamera = createAsyncThunk(
   }
 );
 
+export const deleteCamera = createAsyncThunk(
+  "cameras/delete",
+  async (_, { rejectWithValue, getState }) => {
+    const token = getState().auth.userToken;
+    const selectedCamera = getState().cameras.selectedCamera.id;
+    try {
+      // configure header's Content-Type as JSON
+      const config = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: selectedCamera }),
+      };
+
+      const response = await fetch(`/api/camera`, config);
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      // return custom error message from API if any
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 const { reducer, actions } = createSlice({
   name: "cameras",
   initialState: {
@@ -137,6 +169,22 @@ const { reducer, actions } = createSlice({
       toast.success("Updated");
     },
     [updateCamera.rejected]: (state, { payload }) => {
+      toast("error");
+    },
+    //Delete Camera
+    [deleteCamera.pending]: (state) => {
+      toast.loading("Deleting ...");
+    },
+    [deleteCamera.fulfilled]: (state, { payload }) => {
+      toast.dismiss();
+      state.items = state.items.filter((item) => {
+        return item.id !== state.selectedCamera.id;
+      });
+      state.cloneSelected = null;
+      state.selectedCamera = null;
+      toast.success("Deleted");
+    },
+    [deleteCamera.rejected]: (state, { payload }) => {
       toast("error");
     },
   },

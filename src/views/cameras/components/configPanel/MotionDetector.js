@@ -7,7 +7,6 @@ import {
   Link,
 } from "@mui/material";
 import Title from "src/components/shared/Title";
-import { cameras } from "src/data/data";
 import { camerasActions } from "src/store";
 import CSwitch from "src/components/shared/CSwitch";
 
