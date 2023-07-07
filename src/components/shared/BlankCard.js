@@ -1,11 +1,11 @@
-import { Card } from '@mui/material';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Card } from "@mui/material";
+import React from "react";
+import PropTypes from "prop-types";
 
 const BlankCard = ({ children, className }) => {
   return (
     <Card
-      sx={{ p: 0, position: 'relative' }}
+      sx={{ p: 0, position: "relative", display: "flex" }}
       className={className}
       elevation={9}
       variant={undefined}

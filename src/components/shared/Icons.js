@@ -15,8 +15,11 @@ import {
   IconWashDryShade as Cleaning,
   IconChartDots3 as ChartDots,
   IconCameraUp as CameraUp,
-  IconCameraPlus as CameraPlus
-
+  IconCameraPlus as CameraPlus,
+  IconPlayerPause as Pause,
+  IconCircleX as XCircle,
+  IconVolume as Volume1,
+  IconVolume2 as Volume2,
 } from "@tabler/icons-react";
 
 import { HardDrive, Trash2, Play } from "lucide-react";
@@ -41,5 +44,9 @@ export {
   ChartDots,
   Play,
   CameraUp,
-  CameraPlus
+  CameraPlus,
+  Pause,
+  XCircle,
+  Volume1,
+  Volume2,
 };

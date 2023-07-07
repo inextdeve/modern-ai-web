@@ -62,7 +62,7 @@ const VideoAnalytics = () => {
       <Grid container spacing={4}>
         {viewedCameras.map((camera, index) => (
           <Grid item xs={6} key={index}>
-            <VideoCard url={camera.streamLink} />
+            <VideoCard camera={camera} />
           </Grid>
         ))}
       </Grid>

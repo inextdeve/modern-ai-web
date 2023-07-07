@@ -10,11 +10,13 @@ import {
 import { servers, groups, users, analytics } from "./data/data";
 import { useGetCamerasQuery } from "./services/dataInitialization/getCameras";
 import { useGetAnalyticModulesQuery } from "./services/dataInitialization/getAnalyticModules";
+import { useGetServersQuery } from "./services/dataInitialization/getServers";
 
 const Init = () => {
   const dispatch = useDispatch();
   const { data: cameras, isFetching } = useGetCamerasQuery();
   const { data: analyticModules } = useGetAnalyticModulesQuery();
+  const { data: servers, isFetching: serverIsFetching } = useGetServersQuery();
 
   useEffect(() => {
     //Cameras
@@ -28,6 +30,12 @@ const Init = () => {
     if (analyticModules) dispatch(analyticsActions.add(analyticModules));
   }, [dispatch, analyticModules]);
 
+  useEffect(() => {
+    //Servers
+    if (servers) dispatch(serversActions.add(servers));
+
+    dispatch(serversActions.setLoading(serverIsFetching));
+  }, [dispatch, servers]);
   // useEffect(() => {
   //   // dispatch(camerasActions.add(cameras));
   //   dispatch(serversActions.add(servers));

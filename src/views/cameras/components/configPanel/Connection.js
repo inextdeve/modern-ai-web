@@ -13,11 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 import { camerasActions } from "src/store";
+import CameraTest from "./CameraTest";
 
-const Connection = ({}) => {
+const Connection = () => {
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
+  const servers = useSelector((state) => state.servers.items);
 
   const handleChange = (property, value) => {
     if (property.indexOf("auth") > -1) {
@@ -61,6 +63,7 @@ const Connection = ({}) => {
             <InputLabel>Brand</InputLabel>
             <Select
               labelId="brand-lb-id"
+              label="brand"
               id="brand"
               name="brand"
               value={selectedCamera?.brand}
@@ -134,6 +137,26 @@ const Connection = ({}) => {
         </Stack>
       </Box>
       <Box>
+        <Title>Stream server</Title>
+        <Stack direction="row" spacing={4}>
+          <FormControl>
+            <InputLabel>Server</InputLabel>
+            <Select
+              sx={{ minWidth: "120px" }}
+              name="streamServer"
+              size="small"
+              label="Server"
+              value={selectedCamera?.streamServer}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
+            >
+              {servers.map((server) => (
+                <MenuItem value={`${server.id}`}>{server.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Stack>
+      </Box>
+      <Box>
         <Title>Additional</Title>
         <FormGroup
           onChange={(e) => handleChange(e.target.name, e.target.checked)}
@@ -158,7 +181,9 @@ const Connection = ({}) => {
           />
         </FormGroup>
       </Box>
-      <Box>{/* <SlideDialog /> */}</Box>
+      <Box sx={{ mt: 3 }}>
+        <CameraTest camera={selectedCamera} />
+      </Box>
     </>
   );
 };

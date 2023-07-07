@@ -16,24 +16,24 @@ import ConfigPanel from "./components/configPanel/configPanel";
 import Sidebar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
 import { serverInit } from "src/data/data";
+import { createServer } from "src/store/servers";
 
 const Servers = () => {
-
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [error, setError] = useState({ error: false, helperText: "" });
 
   const open = useSelector((state) => state.servers.createServerDialog);
-  const close = () => dispatch(serversActions.setCreateServerDialog())
+  const close = () => dispatch(serversActions.setCreateServerDialog());
 
-  const selectedServer = useSelector((state) => state.servers.selectedServer);
+  const selectedServer = useSelector((state) => state.servers.selected);
 
   const addServer = () => {
     if (value.trim().length < 3) {
-      setError({ error: true, helperText: "Enter a valid name" })
+      setError({ error: true, helperText: "Enter a valid name" });
       return;
     } else {
-      setError({ error: false, helperText: "" })
+      setError({ error: false, helperText: "" });
     }
 
     toast.promise(new Promise((resolve) => resolve()), {
@@ -41,15 +41,10 @@ const Servers = () => {
       success: "Created",
       error: "Error Try Again",
     });
-
-    const fetchId = { id: 384733 };//await a fetch for create a server in db
-    serverInit.id = fetchId.id;
-    serverInit.name = value;
-    // console.log(serverInit)
-    dispatch(serversActions.add([serverInit]));
-    dispatch(serversActions.setSelected(fetchId.id));
+    dispatch(createServer({ name: value }));
+    setValue("");
     close();
-  }
+  };
 
   return (
     <>
@@ -71,10 +66,7 @@ const Servers = () => {
               <Button variant="contained" onClick={addServer}>
                 Add
               </Button>
-              <Button
-                variant="outlined"
-                onClick={close}
-              >
+              <Button variant="outlined" onClick={close}>
                 Close
               </Button>
             </Stack>

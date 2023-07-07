@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import { Box, Switch, Typography, Tabs, Tab, Button } from "@mui/material";
 import Information from "./Information";
+import { updateServer } from "src/store/servers";
+import Settings from "./settings";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,10 +37,11 @@ const ConfigPanel = () => {
   const [value, setValue] = useState(0);
   const [updated, setUpdated] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
 
   const selectedServer = useSelector((state) => state.servers.selected);
 
@@ -46,14 +49,27 @@ const ConfigPanel = () => {
 
   useEffect(() => {
     setUpdated(!_.isEqual(cloneSelected, selectedServer));
-  }, [selectedServer]);
+  }, [selectedServer, cloneSelected]);
 
   return (
     <>
       {selectedServer !== null ? (
         <>
-          <Box component="header">
-            <Switch />
+          <Box
+            component="header"
+            sx={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            {/* <Switch /> */}
+            {updated && (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  dispatch(updateServer());
+                }}
+              >
+                Update
+              </Button>
+            )}
           </Box>
           <Box>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -63,12 +79,15 @@ const ConfigPanel = () => {
                 aria-label="basic tabs example"
               >
                 <Tab label="Information" {...a11yProps(0)} />
+                <Tab label="Settings" {...a11yProps(1)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
               <Information />
             </TabPanel>
-            {updated && <Button variant="contained">Update</Button>}
+            <TabPanel value={value} index={1}>
+              <Settings />
+            </TabPanel>
           </Box>
         </>
       ) : null}
