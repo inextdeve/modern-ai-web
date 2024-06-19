@@ -5,6 +5,7 @@ import { Box, Switch, Typography, Tabs, Tab, Button } from "@mui/material";
 import Information from "./Information";
 import { updateServer } from "src/store/servers";
 import Settings from "./settings";
+import { useTranslation } from "react-i18next";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,6 +35,7 @@ function a11yProps(index) {
 }
 
 const ConfigPanel = () => {
+  const { t } = useTranslation();
   const [value, setValue] = useState(0);
   const [updated, setUpdated] = useState(false);
 
@@ -67,7 +69,7 @@ const ConfigPanel = () => {
                   dispatch(updateServer());
                 }}
               >
-                Update
+                {t("globals.update")}
               </Button>
             )}
           </Box>
@@ -76,10 +78,10 @@ const ConfigPanel = () => {
               <Tabs
                 value={value}
                 onChange={handleChange}
-                aria-label="basic tabs example"
+                aria-label="basic tabs server"
               >
-                <Tab label="Information" {...a11yProps(0)} />
-                <Tab label="Settings" {...a11yProps(1)} />
+                <Tab label={t("globals.info")} {...a11yProps(0)} />
+                <Tab label={t("globals.settings")} {...a11yProps(1)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

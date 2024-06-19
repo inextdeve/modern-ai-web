@@ -8,6 +8,7 @@ import {
   Paper,
   Checkbox,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { camerasActions } from "src/store/index";
 
@@ -16,6 +17,7 @@ function createData(allGroupsOfUsers, surveillance, archive) {
 }
 
 const BasicTable = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
@@ -37,8 +39,10 @@ const BasicTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>All Groups Of Users</TableCell>
-            <TableCell align="right">Surveillance</TableCell>
+            <TableCell>{t("cameras.rights.allGroupsOfUsers")}</TableCell>
+            <TableCell align="right">
+              {t("cameras.rights.surveillance")}
+            </TableCell>
             <TableCell align="right">Archive</TableCell>
           </TableRow>
         </TableHead>

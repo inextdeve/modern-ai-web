@@ -1,15 +1,14 @@
-import React from 'react';
-import { Grid, Box } from '@mui/material';
-import PageContainer from 'src/components/container/PageContainer';
+import React from "react";
+import { Grid, Box } from "@mui/material";
+import PageContainer from "src/components/container/PageContainer";
 
 // components
-import VideoAnalytics from './components/VideoAnalytics';
-import EnabledCameras from './components/EnabledCameras';
-import RecentTransactions from './components/RecentTransactions';
-import ProductPerformance from './components/ProductPerformance';
-import Blog from './components/Blog';
-import MonthlyEarnings from './components/MonthlyEarnings';
-
+import VideoAnalytics from "./components/VideoAnalytics";
+import EnabledCameras from "./components/EnabledCameras";
+import RecentTransactions from "./components/RecentTransactions";
+import ProductPerformance from "./components/ProductPerformance";
+import Blog from "./components/Blog";
+import MonthlyEarnings from "./components/MonthlyEarnings";
 
 const Dashboard = () => {
   return (

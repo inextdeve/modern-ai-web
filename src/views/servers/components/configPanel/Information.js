@@ -21,8 +21,10 @@ import {
 import { serversActions, camerasActions } from "src/store";
 import Title from "src/components/shared/Title";
 import ServerTest from "./ServerTest";
+import { useTranslation } from "react-i18next";
 
 const Information = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const selectedServer = useSelector((state) => state.servers.selected);
@@ -65,14 +67,14 @@ const Information = () => {
 
   return (
     <Box>
-      <Title>Network address for accessing server</Title>
+      <Title>{t("servers.netAddForServer")}</Title>
       <FormControl sx={{ my: 4 }}>
         <Stack direction="row" gap={3}>
           <Box>
             <TextField
               name="address"
               size="small"
-              label="Adress"
+              label={t("globals.address")}
               value={selectedServer?.address}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               helperText="IPv4 or Host"
@@ -82,7 +84,7 @@ const Information = () => {
             <TextField
               name="port"
               size="small"
-              label="Port"
+              label={t("globals.port")}
               value={selectedServer?.port}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
               sx={{ width: "100px" }}
@@ -92,10 +94,10 @@ const Information = () => {
             </FormHelperText>
           </Box>
           <FormControl sx={{ width: "100px" }}>
-            <InputLabel>Protocol</InputLabel>
+            <InputLabel>{t("globals.protocol")}</InputLabel>
             <Select
               labelId="protocol-lb-id"
-              label="Protocol"
+              label={t("globals.protocol")}
               id="protocol"
               name="protocol"
               value={selectedServer?.protocol}
@@ -108,7 +110,7 @@ const Information = () => {
           </FormControl>
         </Stack>
       </FormControl>
-      <Title>Linked Devices</Title>
+      <Title>{t("servers.linkedDevices")}</Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableBody>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, Typography, Tabs, Tab } from "@mui/material";
 import Information from "./Information";
+import { useTranslation } from "react-i18next";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -31,15 +32,15 @@ function a11yProps(index) {
 }
 
 const ConfigPanel = () => {
+  const { t } = useTranslation();
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const selectedModule = useSelector(
-    (state) => state.analytics.selectedModule
-  );
+  const selectedModule = useSelector((state) => state.analytics.selectedModule);
 
   return (
     <>
@@ -51,7 +52,7 @@ const ConfigPanel = () => {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Information" {...a11yProps(0)} />
+              <Tab label={t("globals.info")} {...a11yProps(0)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>

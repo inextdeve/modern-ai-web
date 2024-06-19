@@ -17,8 +17,10 @@ import Sidebar from "./components/sidebar/Sidebar";
 import DashboardCard from "src/components/shared/DashboardCard";
 import { serverInit } from "src/data/data";
 import { createServer } from "src/store/servers";
+import { useTranslation } from "react-i18next";
 
 const Servers = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [error, setError] = useState({ error: false, helperText: "" });
@@ -30,7 +32,7 @@ const Servers = () => {
 
   const addServer = () => {
     if (value.trim().length < 3) {
-      setError({ error: true, helperText: "Enter a valid name" });
+      setError({ error: true, helperText: t("globals.enterValidName") });
       return;
     } else {
       setError({ error: false, helperText: "" });
@@ -48,11 +50,11 @@ const Servers = () => {
 
   return (
     <>
-      <PageContainer title="Servers" description="this is Servers">
+      <PageContainer title={t("servers.title")} description="this is Servers">
         <Dialog open={open}>
           <Box sx={{ padding: "1rem" }}>
             <DialogTitle sx={{ textAlign: "center" }}>
-              Add new server
+              {t("servers.addNew")}
             </DialogTitle>
             <TextField
               size="small"
@@ -64,10 +66,10 @@ const Servers = () => {
             />
             <Stack direction="row" gap={2}>
               <Button variant="contained" onClick={addServer}>
-                Add
+                {t("globals.add")}
               </Button>
               <Button variant="outlined" onClick={close}>
-                Close
+                {t("globals.close")}
               </Button>
             </Stack>
           </Box>

@@ -16,6 +16,7 @@ import {
   Cleaning,
 } from "src/components/shared/Icons";
 import { analyticsActions } from "src/store";
+import { useTranslation } from "react-i18next";
 
 const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
@@ -31,6 +32,7 @@ const MenuItem = ({ title, icon, selected, onClick }) => (
 );
 
 const AnalyticsList = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -51,7 +53,7 @@ const AnalyticsList = () => {
   return (
     <List>
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary={"Video Analytics"} />
+        <ListItemText primary={t("analytics.videoAnalytics")} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

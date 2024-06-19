@@ -14,8 +14,11 @@ import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
 import { camerasActions } from "src/store";
 import CameraTest from "./CameraTest";
+import { useTranslation } from "react-i18next";
 
 const Connection = () => {
+  const [translate] = useTranslation();
+  const t = (value) => translate(`cameras.connection.${value}`);
   const dispatch = useDispatch();
 
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
@@ -46,21 +49,21 @@ const Connection = () => {
   return (
     <>
       <Box>
-        <Title>Address (IP address or URL)</Title>
+        <Title>{t("addressUrl")}</Title>
         <TextField
           name="address"
           size="small"
           id="outlined-basic"
-          label="IPv4/URL"
+          label={t("ipv4/url")}
           sx={{ width: "80%" }}
           value={selectedCamera?.address}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
         />
 
-        <Title>Device</Title>
+        <Title>{t("device")}</Title>
         <Stack direction="row" spacing={4}>
           <FormControl fullWidth>
-            <InputLabel>Brand</InputLabel>
+            <InputLabel>{t("brand")}</InputLabel>
             <Select
               labelId="brand-lb-id"
               label="brand"
@@ -75,23 +78,23 @@ const Connection = () => {
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel>Device Type</InputLabel>
+            <InputLabel>{t("deviceType")}</InputLabel>
             <Select
               name="type"
               size="small"
-              label="Device Type"
+              label={t("deviceType")}
               value={selectedCamera?.type}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             >
-              <MenuItem value="camera">Camera</MenuItem>
+              <MenuItem value="camera">{t("camera")}</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel>Model</InputLabel>
+            <InputLabel>{t("model")}</InputLabel>
             <Select
               name="model"
               size="small"
-              label="Model"
+              label={t("model")}
               value={selectedCamera?.model}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             >
@@ -99,19 +102,19 @@ const Connection = () => {
             </Select>
           </FormControl>
         </Stack>
-        <Title>Authorization</Title>
+        <Title>{t("auth")}</Title>
         <Stack direction="row" spacing={4}>
           <TextField
             name="auth-username"
             size="small"
-            label="Username"
+            label={t("username")}
             value={selectedCamera?.auth.username}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
           />
           <TextField
             name="auth-password"
             size="small"
-            label="Password"
+            label={t("password")}
             type="password"
             value={selectedCamera?.auth.password}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
@@ -119,14 +122,14 @@ const Connection = () => {
         </Stack>
       </Box>
       <Box>
-        <Title>Video streams</Title>
+        <Title>{t("videoStreams")}</Title>
         <Stack direction="row" spacing={4}>
           <FormControl>
-            <InputLabel>Format</InputLabel>
+            <InputLabel>{t("format")}</InputLabel>
             <Select
               name="streams-0-format"
               size="small"
-              label="Model"
+              label={t("model")}
               value={selectedCamera?.streams[0].format}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             >
@@ -137,15 +140,15 @@ const Connection = () => {
         </Stack>
       </Box>
       <Box>
-        <Title>Stream server</Title>
+        <Title>{t("streamServer")}</Title>
         <Stack direction="row" spacing={4}>
           <FormControl>
-            <InputLabel>Server</InputLabel>
+            <InputLabel>{t("server")}</InputLabel>
             <Select
               sx={{ minWidth: "120px" }}
               name="streamServer"
               size="small"
-              label="Server"
+              label={t("server")}
               value={selectedCamera?.streamServer}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             >
@@ -157,27 +160,27 @@ const Connection = () => {
         </Stack>
       </Box>
       <Box>
-        <Title>Additional</Title>
+        <Title>{t("additional")}</Title>
         <FormGroup
           onChange={(e) => handleChange(e.target.name, e.target.checked)}
         >
           <FormControlLabel
             name="sound"
             control={<CSwitch />}
-            label="Sound reception"
+            label={t("soundReception")}
             checked={Boolean(selectedCamera?.sound)}
             value={selectedCamera?.sound}
           />
           <FormControlLabel
             name="narrowBandwidth"
             control={<CSwitch />}
-            label="Narrow bandwidth camera"
+            label={t("narrow")}
             checked={Boolean(selectedCamera?.narrowBandwidth)}
             value={selectedCamera?.narrowBandwidth}
           />
           <FormControlLabel
             control={<CSwitch disabled />}
-            label="Connection via server"
+            label={t("connServ")}
           />
         </FormGroup>
       </Box>

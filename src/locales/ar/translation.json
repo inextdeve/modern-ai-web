@@ -1,0 +1,155 @@
+{
+  "title": "مرحبا بالدي AI",
+  "globals": {
+    "all": "الكل",
+    "add": "إضافة",
+    "apply": "تطبيق",
+    "address": "عنوان",
+    "camera": "كاميرا",
+    "cameras": "كاميرات",
+    "connTabMsg": "يمكن تعديل البث في علامة التبويب الاتصال",
+    "close": "إغلاق",
+    "cancel": "إلغاء",
+    "create": "إنشاء",
+    "dashboard": "لوحة التحكم",
+    "disabled": "معطل",
+    "delete": "حذف",
+    "delMsg": "هل أنت متأكد أنك تريد الحذف",
+    "edit": "تعديل",
+    "extra": "إضافي",
+    "enabled": "ممكّن",
+    "enterValidName": "أدخل اسمًا صالحًا",
+    "extensiveTesting": "اختبار مكثف",
+    "fail": "فشل",
+    "home": "الصفحة الرئيسية",
+    "info": "معلومات",
+    "language": "اللغة",
+    "logout": "تسجيل الخروج",
+    "main": "الرئيسية",
+    "manual": "يدوي",
+    "mainStream": "البث الرئيسي",
+    "myProfile": "ملفي الشخصي",
+    "myAccount": "حسابي",
+    "myTasks": "مهامي",
+    "name": "الاسم",
+    "port": "المنفذ",
+    "protocol": "البروتوكول",
+    "servers": "الخوادم",
+    "server": "الخادم",
+    "settings": "الإعدادات",
+    "save": "حفظ",
+    "sample": "عينة",
+    "setupStream": "إعداد البث",
+    "search": "بحث",
+    "stopTesting": "إيقاف الاختبار",
+    "success": "نجاح",
+    "type": "النوع",
+    "testCam": "اختبار الكاميرا",
+    "users": "المستخدمون",
+    "utilities": "الأدوات",
+    "update": "تحديث",
+    "username": "اسم المستخدم",
+    "videoAnalytics": "تحليل الفيديو",
+    "warning": "تحذير"
+  },
+  "languages": {
+    "ar": "العربية",
+    "en": "الإنجليزية"
+  },
+  "dashboard": {
+    "videoAnalytics": "تحليل الفيديو",
+    "enabledCameras": "الكاميرات المفعلة",
+    "enabledRate": "معدل التفعيل"
+  },
+  "cameras": {
+    "add": "إضافة كاميرا جديدة",
+    "connection": {
+      "title": "الاتصال",
+      "addressUrl": "العنوان (عنوان IP أو URL)",
+      "auth": "التفويض",
+      "additional": "إضافي",
+      "brand": "العلامة التجارية",
+      "camera": "كاميرا",
+      "device": "الجهاز",
+      "deviceType": "نوع الجهاز",
+      "model": "النموذج",
+      "videoStreams": "تدفقات الفيديو",
+      "format": "الصيغة",
+      "streamServer": "خادم البث",
+      "soundReception": "استقبال الصوت",
+      "server": "الخادم",
+      "narrow": "كاميرا عرض النطاق الترددي الضيق",
+      "connServ": "الاتصال عبر الخادم",
+      "testCam": "اختبار الكاميرا",
+      "ipv4/url": "IPV4/URL",
+      "password": "كلمة المرور",
+      "username": "اسم المستخدم"
+    },
+    "rights": {
+      "title": "الحقوق",
+      "cameraRights": "حقوق الكاميرا",
+      "allGroupsOfUsers": "جميع مجموعات المستخدمين",
+      "surveillance": "المراقبة"
+    },
+    "archive": {
+      "title": "الأرشيف",
+      "recViewArch": "تسجيل وعرض الأرشيف",
+      "mode": "وضع التسجيل",
+      "alwaysOn": "دائمًا قيد التشغيل",
+      "byMotion": "بالحركة",
+      "schedule": "الجدول الزمني",
+      "settingMsg": "يمكن تعديل معلمات تخزين الأرشيف في إعدادات الخادم",
+      "setupServer": "إعداد الخادم",
+      "vidStreamForRec": "تدفق الفيديو للتسجيل"
+    },
+    "motionDetector": {
+      "title": "كاشف الحركة",
+      "videoStreamForAnlysis": "تدفق الفيديو للتحليل",
+      "motionDetector": "كاشف الحركة"
+    },
+    "analytics": {
+      "title": "التحليلات",
+      "intelModule": "الوحدة الذكية",
+      "workerPresence": "حضور العامل",
+      "trashUnloading": "تفريغ النفايات",
+      "qualityOfCleaning": "جودة التنظيف"
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "camSettings": "إعدادات الكاميرا",
+      "renameCam": "إعادة تسمية الكاميرا",
+      "delCam": "حذف الكاميرا",
+      "delMsg": "هل أنت متأكد أنك تريد الحذف"
+    }
+  },
+  "servers": {
+    "title": "الخوادم",
+    "addNew": "إضافة خادم جديد",
+    "netAddForServer": "عنوان الشبكة للوصول إلى الخادم",
+    "linkedDevices": "الأجهزة المرتبطة",
+    "sendingTestReq": "إرسال طلب اختبار",
+    "connStatus": "حالة الاتصال",
+    "settings": {
+      "title": "إعدادات الخادم",
+      "renServer": "إعادة تسمية الخادم",
+      "delServer": "حذف الخادم"
+    }
+  },
+  "users": {
+    "createNewItem": "إنشاء عنصر جديد",
+    "user": "مستخدم",
+    "group": "مجموعة",
+    "pass": "كلمة المرور",
+    "newPass": "كلمة مرور جديدة",
+    "confirmPass": "تأكيد كلمة المرور",
+    "editPass": "تعديل كلمة المرور",
+    "information": {
+      "title": "عنوان الشبكة للوصول إلى الخادم"
+    }
+  },
+  "analytics": {
+    "camWithModule": "كاميرا مع وحدة",
+    "enabledCamera": "الكاميرات المفعلة",
+    "videoAnalytics": "تحليل الفيديو"
+  }
+}

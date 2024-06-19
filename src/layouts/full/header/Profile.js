@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -8,14 +8,17 @@ import {
   IconButton,
   MenuItem,
   ListItemIcon,
-  ListItemText
-} from '@mui/material';
+  ListItemText,
+} from "@mui/material";
 
-import { IconListCheck, IconMail, IconUser } from '@tabler/icons-react';
+import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
 
-import ProfileImg from 'src/assets/images/profile/user-1.jpg';
+import ProfileImg from "src/assets/images/profile/user-1.jpg";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
+  const { t: translate } = useTranslation();
+  const t = (value) => translate(`globals.${value}`);
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event) => {
     setAnchorEl2(event.currentTarget);
@@ -33,8 +36,8 @@ const Profile = () => {
         aria-controls="msgs-menu"
         aria-haspopup="true"
         sx={{
-          ...(typeof anchorEl2 === 'object' && {
-            color: 'primary.main',
+          ...(typeof anchorEl2 === "object" && {
+            color: "primary.main",
           }),
         }}
         onClick={handleClick2}
@@ -57,11 +60,11 @@ const Profile = () => {
         keepMounted
         open={Boolean(anchorEl2)}
         onClose={handleClose2}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
         sx={{
-          '& .MuiMenu-paper': {
-            width: '200px',
+          "& .MuiMenu-paper": {
+            width: "200px",
           },
         }}
       >
@@ -69,23 +72,29 @@ const Profile = () => {
           <ListItemIcon>
             <IconUser width={20} />
           </ListItemIcon>
-          <ListItemText>My Profile</ListItemText>
+          <ListItemText>{t("myProfile")}</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <IconMail width={20} />
           </ListItemIcon>
-          <ListItemText>My Account</ListItemText>
+          <ListItemText>{t("myAccount")}</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <IconListCheck width={20} />
           </ListItemIcon>
-          <ListItemText>My Tasks</ListItemText>
+          <ListItemText>{t("myTasks")}</ListItemText>
         </MenuItem>
         <Box mt={1} py={1} px={2}>
-          <Button to="/auth/login" variant="outlined" color="primary" component={Link} fullWidth>
-            Logout
+          <Button
+            to="/auth/login"
+            variant="outlined"
+            color="primary"
+            component={Link}
+            fullWidth
+          >
+            {t("logout")}
           </Button>
         </Box>
       </Menu>

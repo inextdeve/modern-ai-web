@@ -7,8 +7,10 @@ import { countRate } from "src/helpers/util";
 import DashboardCard from "../../../components/shared/DashboardCard";
 import { useSelector } from "react-redux";
 import { CameraUp } from "src/components/shared/Icons";
+import { useTranslation } from "react-i18next";
 
 const EnabledCameras = () => {
+  const { t } = useTranslation();
   // all Cameras
   const cameras = useSelector((state) => state.cameras.items);
 
@@ -76,7 +78,7 @@ const EnabledCameras = () => {
   };
 
   return (
-    <DashboardCard title="Enabled Cameras">
+    <DashboardCard title={t("dashboard.enabledCameras")}>
       <Grid container spacing={3}>
         {/* column */}
         <Grid item xs={7} sm={7}>
@@ -95,7 +97,7 @@ const EnabledCameras = () => {
               %
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              Enabled rate
+              {t("dashboard.enabledRate")}
             </Typography>
           </Stack>
           <Stack spacing={3} mt={5} direction="row">
@@ -109,7 +111,7 @@ const EnabledCameras = () => {
                 }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
-                Enabled
+                {t("globals.enabled")}
               </Typography>
             </Stack>
             <Stack direction="row" spacing={1} alignItems="center">
@@ -122,7 +124,7 @@ const EnabledCameras = () => {
                 }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
-                Disabled
+                {t("globals.disabled")}
               </Typography>
             </Stack>
           </Stack>

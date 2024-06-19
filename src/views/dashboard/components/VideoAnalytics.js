@@ -3,8 +3,10 @@ import { Select, MenuItem, Grid } from "@mui/material";
 import DashboardCard from "../../../components/shared/DashboardCard";
 import { useSelector } from "react-redux";
 import VideoCard from "src/components/shared/VideoCard";
+import { useTranslation } from "react-i18next";
 
 const VideoAnalytics = () => {
+  const { t } = useTranslation();
   // select
   const [selectedModule, setSelectedModule] = useState("all");
 
@@ -41,7 +43,7 @@ const VideoAnalytics = () => {
 
   return (
     <DashboardCard
-      title="Video Analytics"
+      title={t("dashboard.videoAnalytics")}
       action={
         <Select
           labelId="module-label"
@@ -50,7 +52,7 @@ const VideoAnalytics = () => {
           size="small"
           onChange={handleChange}
         >
-          <MenuItem value={"all"}>All</MenuItem>
+          <MenuItem value={"all"}>{t("globals.all")}</MenuItem>
           {analyticsModules.map((module) => (
             <MenuItem key={module.id} value={module.id}>
               {module.name}

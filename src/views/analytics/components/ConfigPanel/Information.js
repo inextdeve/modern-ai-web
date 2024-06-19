@@ -8,8 +8,10 @@ import {
 
 import { camerasActions } from "src/store";
 import Title from "src/components/shared/Title";
+import { useTranslation } from "react-i18next";
 
 const Information = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const selectedModule = useSelector((state) => state.analytics.selected);
 
@@ -25,13 +27,13 @@ const Information = () => {
     if (selectedModule !== null) {
       return [
         createData(
-          "Camera with module",
+          t("analytics.camWithModule"),
           enabledCameras.filter(({ analytics }) =>
             Boolean(analytics[selectedModule.id])
           ).length
         ),
         createData(
-          "Enabled Cameras",
+          t("analytics.enabledCamera"),
           <>
             {/* GHadi ital3o kamlat filtri 3la hsab li mactivi fiha had lmodule */}
             {enabledCameras
@@ -64,7 +66,7 @@ const Information = () => {
 
   return (
     <Box>
-      <Title>Information</Title>
+      <Title>{t("globals.info")}</Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableBody>

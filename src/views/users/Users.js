@@ -16,15 +16,17 @@ import {
 } from "@mui/material";
 import ConfigPanel from "./components/ConfigPanel/ConfigPanel";
 import Sidebar from "./components/Sidebar/Sidebar";
-import DashboardCard from "src/components/shared/DashboardCard"
+import DashboardCard from "src/components/shared/DashboardCard";
 import PageContainer from "src/components/container/PageContainer";
+import { useTranslation } from "react-i18next";
 
 const Users = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const open = useSelector((state) => state.users.openCreateUserDialog);
 
-  const selectedUser = useSelector(state => state.users.selectedUser)
+  const selectedUser = useSelector((state) => state.users.selectedUser);
 
   const [value, setValue] = useState("");
 
@@ -35,16 +37,16 @@ const Users = () => {
   };
 
   const handleAddUser = () => {
-    setTimeout(() => { }, 4000);
+    setTimeout(() => {}, 4000);
     dispatch(usersActions.add({}));
   };
 
   return (
-    <PageContainer title="users" description="Users management">
+    <PageContainer title={t("globals.users")} description="Users management">
       <Dialog open={open}>
         <Box sx={{ padding: "1rem" }}>
           <DialogTitle sx={{ textAlign: "center" }}>
-            Create new item
+            {t("users.createNewItem")}
           </DialogTitle>
           <TextField
             size="small"
@@ -63,19 +65,19 @@ const Users = () => {
               label="Type"
               onChange={handleChange}
             >
-              <MenuItem value={0}>User</MenuItem>
-              <MenuItem value={1}>Group</MenuItem>
+              <MenuItem value={0}>{t("users.user")}</MenuItem>
+              <MenuItem value={1}>{t("users.group")}</MenuItem>
             </Select>
           </FormControl>
           <Stack direction="row" gap={2}>
             <Button variant="contained" onClick={handleAddUser}>
-              Create
+              {t("globals.create")}
             </Button>
             <Button
               variant="outlined"
               onClick={() => dispatch(usersActions.setOpenCreateUserDialog())}
             >
-              Close
+              {t("globals.close")}
             </Button>
           </Stack>
         </Box>

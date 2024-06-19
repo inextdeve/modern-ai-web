@@ -14,8 +14,14 @@ import {
 import Title from "src/components/shared/Title";
 import { camerasActions } from "src/store";
 import { deleteCamera } from "src/store/cameras";
+import { useTranslation } from "react-i18next";
 
 const Settings = ({}) => {
+  const { t: translate } = useTranslation();
+  const t = (value) =>
+    value.indexOf(".") > -1
+      ? translate(value)
+      : translate(`cameras.settings.${value}`);
   const dispatch = useDispatch();
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
@@ -38,15 +44,15 @@ const Settings = ({}) => {
 
   return (
     <Box>
-      <Title>Camera Settings</Title>
+      <Title>{t("camSettings")}</Title>
       <Typography sx={{ color: "grey", fontWeight: "bold", mb: 2 }}>
-        Rename camera
+        {t("renameCam")}
       </Typography>
       <TextField
         name="name"
         size="small"
         id="outlined-basic"
-        label="Name"
+        label={t("globals.name")}
         sx={{ width: "80%" }}
         value={selectedCamera?.name}
         onChange={handleChange}
@@ -57,7 +63,7 @@ const Settings = ({}) => {
         color="error"
         onClick={handleClickOpen}
       >
-        Delete Camera
+        {t("delCam")}
       </Button>
       <Box>
         <Dialog
@@ -66,10 +72,12 @@ const Settings = ({}) => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Warning</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            {t("globals.warning")}
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to delete{" "}
+              {t("delMsg")}{" "}
               <Typography component="span" sx={{ fontWeight: "bold" }}>
                 {selectedCamera.name}
               </Typography>{" "}
@@ -78,10 +86,10 @@ const Settings = ({}) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} autoFocus>
-              Cancel
+              {t("globals.cancel")}
             </Button>
             <Button onClick={() => dispatch(deleteCamera())} color="warning">
-              Delete
+              {t("globals.delete")}
             </Button>
           </DialogActions>
         </Dialog>

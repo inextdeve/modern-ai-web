@@ -7,8 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Play, Pause } from "src/components/shared/Icons";
 import { Stack, CircularProgress } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function OutlinedCard({ server }) {
+  const { t } = useTranslation();
   const [testing, setTesting] = useState(false);
   const [testingMessage, setTestingMessage] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -66,12 +68,12 @@ export default function OutlinedCard({ server }) {
               color="text.secondary"
               gutterBottom
             >
-              Sending test request
+              {t("servers.sendingTestReq")}
             </Typography>
             {/* If you want to add connection status */}
             <Stack direction="row" sx={{ gap: 1 }}>
               <Typography component="span" sx={{ color: "#5d87ff" }}>
-                Connection status:
+                {t("servers.connStatus")}
               </Typography>
               <Typography
                 component="span"
@@ -89,7 +91,7 @@ export default function OutlinedCard({ server }) {
                     sx={{ mt: 0.5 }}
                   />
                 ) : (
-                  testingMessage
+                  t(`globals.${testingMessage.toLowerCase()}`)
                 )}
               </Typography>
             </Stack>

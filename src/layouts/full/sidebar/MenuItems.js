@@ -1,67 +1,75 @@
 import {
   IconAperture,
   IconLayoutDashboard,
-  IconLogin,
-  IconMoodHappy,
   IconDeviceCctv,
-  IconUserPlus,
-
-
 } from "@tabler/icons-react";
 import { ServerIcon, Users, ChartDots } from "src/components/shared/Icons";
 import { uniqueId } from "lodash";
+import i18next from "../../../i18n";
+import { useTranslation } from "react-i18next";
+
+const Trans = ({ value }) => {
+  const { t } = useTranslation();
+  return <>{t(value)}</>;
+};
 
 const Menuitems = [
   {
     navlabel: true,
-    subheader: "Home",
+    subheader: <Trans value="globals.home" />,
   },
 
   {
     id: uniqueId(),
-    title: "Dashboard",
+    title: <Trans value="globals.dashboard" />,
     icon: IconLayoutDashboard,
     href: "/dashboard",
   },
   {
     navlabel: true,
-    subheader: "Utilities",
+    subheader: <Trans value="globals.utilities" />,
   },
   {
     id: uniqueId(),
-    title: "Cameras",
+    title: <Trans value="globals.cameras" />,
     icon: IconDeviceCctv,
     href: "/cameras",
   },
   {
     id: uniqueId(),
-    title: "Servers",
+    title: <Trans value="globals.servers" />,
     icon: ServerIcon,
     href: "/servers",
   },
   {
     id: uniqueId(),
-    title: "Users",
+    title: <Trans value="globals.users" />,
     icon: Users,
     href: "/users",
   },
   {
     id: uniqueId(),
-    title: "Video Analytics",
+    title: <Trans value="globals.videoAnalytics" />,
     icon: ChartDots,
     href: "/analytics",
   },
   {
     navlabel: true,
-    subheader: "Settings",
-  },
-  {
-    navlabel: true,
-    subheader: "Extra",
+    subheader: <Trans value="globals.settings" />,
   },
   {
     id: uniqueId(),
-    title: "Sample Page",
+    title: <Trans value="globals.settings" />,
+    icon: ChartDots,
+    href: "/settings",
+  },
+  {
+    navlabel: true,
+    subheader: <Trans value="globals.extra" />,
+  },
+  {
+    id: uniqueId(),
+    title: <Trans value="globals.sample" />,
     icon: IconAperture,
     href: "/sample-page",
   },

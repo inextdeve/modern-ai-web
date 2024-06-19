@@ -1,0 +1,155 @@
+{
+  "title": "Welcome Balady AI",
+  "globals": {
+    "all": "All",
+    "add": "Add",
+    "apply": "Apply",
+    "address": "Address",
+    "camera": "Camera",
+    "cameras": "Cameras",
+    "connTabMsg": "It is possible to modify the stream on the Connection Tab",
+    "close": "Close",
+    "cancel": "Cancel",
+    "create": "Create",
+    "dashboard": "Dashboard",
+    "disabled": "Disabled",
+    "delete": "Delete",
+    "delMsg": "Are you sure you want to delete",
+    "edit": "Edit",
+    "extra": "Extra",
+    "enabled": "Enabled",
+    "enterValidName": "Enter a valid name",
+    "extensiveTesting": "Extensive testing",
+    "fail": "Fail",
+    "home": "Home",
+    "info": "Information",
+    "language": "Language",
+    "logout": "Logout",
+    "main": "Main",
+    "manual": "Manual",
+    "mainStream": "Main Stream",
+    "myProfile": "My Profile",
+    "myAccount": "My Account",
+    "myTasks": "My Tasks",
+    "name": "Name",
+    "port": "Port",
+    "protocol": "Protocol",
+    "servers": "Servers",
+    "server": "Server",
+    "settings": "Settings",
+    "save": "Save",
+    "sample": "Sample",
+    "setupStream": "Set up the stream",
+    "search": "Search",
+    "stopTesting": "Stop testing",
+    "success": "Success",
+    "type": "Type",
+    "testCam": "Test Camera",
+    "users": "Users",
+    "utilities": "Utilities",
+    "update": "Update",
+    "username": "Username",
+    "videoAnalytics": "Video Analytics",
+    "warning": "Warning"
+  },
+  "languages": {
+    "ar": "Arabic",
+    "en": "English"
+  },
+  "dashboard": {
+    "videoAnalytics": "Video Analytics",
+    "enabledCameras": "Enabled Cameras",
+    "enabledRate": "Enabled rate"
+  },
+  "cameras": {
+    "add": "Add new camera",
+    "connection": {
+      "title": "Connection",
+      "addressUrl": "Address (IP address or URL)",
+      "auth": "Authorization",
+      "additional": "Additional",
+      "brand": "Brand",
+      "camera": "Camera",
+      "device": "Device",
+      "deviceType": "Device Type",
+      "model": "Model",
+      "videoStreams": "Video Streams",
+      "format": "Format",
+      "streamServer": "Stream Server",
+      "soundReception": "Sound Reception",
+      "server": "Server",
+      "narrow": "Narrow Bandwidth Camera",
+      "connServ": "Connection Via Server",
+      "testCam": "Test Camera",
+      "ipv4/url": "IPV4/URL",
+      "password": "Password",
+      "username": "Username"
+    },
+    "rights": {
+      "title": "Rights",
+      "cameraRights": "Camera Rights",
+      "allGroupsOfUsers": "All Groups Of Users",
+      "surveillance": "Surveillance"
+    },
+    "archive": {
+      "title": "Archive",
+      "recViewArch": "Recording and viewing archive",
+      "mode": "Recording mode",
+      "alwaysOn": "Always On",
+      "byMotion": "By Motion",
+      "schedule": "Schedule",
+      "settingMsg": "It is possible to modify archive storage parameters in the server settings",
+      "setupServer": "Set up server",
+      "vidStreamForRec": "Video stream for recording"
+    },
+    "motionDetector": {
+      "title": "Motion Detector",
+      "videoStreamForAnlysis": "Video stream for analysis",
+      "motionDetector": "Motion Detector"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "intelModule": "Intelligent module",
+      "workerPresence": "Wroker presence",
+      "trashUnloading": "Trash unloading",
+      "qualityOfCleaning": "Quality of cleaning"
+    },
+    "settings": {
+      "title": "Settings",
+      "camSettings": "Camera Settings",
+      "renameCam": "Rename camera",
+      "delCam": "Delete Camera",
+      "delMsg": "Are you sure you want to delete"
+    }
+  },
+  "servers": {
+    "title": "Servers",
+    "addNew": "Add new server",
+    "netAddForServer": "Network address for accessing server",
+    "linkedDevices": "Linked Devices",
+    "sendingTestReq": "Sending test request",
+    "connStatus": "Connection status",
+    "settings": {
+      "title": "Server Settings",
+      "renServer": "Rename server",
+      "delServer": "Delete Server"
+    }
+  },
+  "users": {
+    "createNewItem": "Create new item",
+    "user": "User",
+    "group": "Group",
+    "pass": "Password",
+    "newPass": "New password",
+    "confirmPass": "Confirm Password",
+    "editPass": "Edit Password",
+    "information": {
+      "title": "Network address for accessing server"
+    }
+  },
+  "analytics": {
+    "camWithModule": "Camera with module",
+    "enabledCamera": "Enabled Cameras",
+    "videoAnalytics": "Video Analytics"
+  }
+}

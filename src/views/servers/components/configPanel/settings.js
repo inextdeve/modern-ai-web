@@ -14,8 +14,10 @@ import {
 import Title from "src/components/shared/Title";
 import { serversActions } from "src/store";
 import { deleteServer } from "src/store/servers";
+import { useTranslation } from "react-i18next";
 
 const Settings = ({}) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const selectedServer = useSelector((state) => state.servers.selected);
 
@@ -38,9 +40,9 @@ const Settings = ({}) => {
 
   return (
     <Box>
-      <Title>Server Settings</Title>
+      <Title>{t("servers.settings.title")}</Title>
       <Typography sx={{ color: "grey", fontWeight: "bold", mb: 2 }}>
-        Rename server
+        {t("servers.settings.renServer")}
       </Typography>
       <TextField
         name="name"
@@ -58,7 +60,7 @@ const Settings = ({}) => {
           color="error"
           onClick={handleClickOpen}
         >
-          Delete Server
+          {t("servers.settings.delServer")}
         </Button>
       </Box>
 
@@ -69,10 +71,12 @@ const Settings = ({}) => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Warning</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            {t("globals.warning")}
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure you want to delete{" "}
+              {t("globals.delMsg")}{" "}
               <Typography component="span" sx={{ fontWeight: "bold" }}>
                 {selectedServer.name}
               </Typography>{" "}
@@ -81,10 +85,10 @@ const Settings = ({}) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} autoFocus>
-              Cancel
+              {t("globals.cancel")}
             </Button>
             <Button onClick={() => dispatch(deleteServer())} color="warning">
-              Delete
+              {t("globals.delete")}
             </Button>
           </DialogActions>
         </Dialog>

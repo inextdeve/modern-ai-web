@@ -18,6 +18,7 @@ import Analytics from "./Analytics";
 import Settings from "./Settings";
 import { camerasActions } from "src/store";
 import { updateCamera } from "src/store/cameras";
+import { useTranslation } from "react-i18next";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,6 +48,7 @@ function a11yProps(index) {
 }
 
 const ConfigPanel = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [updated, setUpdated] = useState(false);
@@ -89,7 +91,7 @@ const ConfigPanel = () => {
                   dispatch(updateCamera());
                 }}
               >
-                Update
+                {t("globals.update")}
               </Button>
             )}
           </Box>
@@ -100,12 +102,15 @@ const ConfigPanel = () => {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <Tab label="Connection" {...a11yProps(0)} />
-                <Tab label="Rights" {...a11yProps(1)} />
-                <Tab label="Archive" {...a11yProps(2)} />
-                <Tab label="Motion Detector" {...a11yProps(3)} />
-                <Tab label="Analytics" {...a11yProps(4)} />
-                <Tab label="Settings" {...a11yProps(5)} />
+                <Tab label={t("cameras.connection.title")} {...a11yProps(0)} />
+                <Tab label={t("cameras.rights.title")} {...a11yProps(1)} />
+                <Tab label={t("cameras.archive.title")} {...a11yProps(2)} />
+                <Tab
+                  label={t("cameras.motionDetector.title")}
+                  {...a11yProps(3)}
+                />
+                <Tab label={t("cameras.analytics.title")} {...a11yProps(4)} />
+                <Tab label={t("globals.settings")} {...a11yProps(5)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

@@ -15,7 +15,7 @@ import {
 import EditDialog from "./EditDialog";
 import CSwitch from "src/components/shared/CSwitch";
 import Title from "src/components/shared/Title";
-
+import { useTranslation } from "react-i18next";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,12 +37,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Information = () => {
+  const { t } = useTranslation();
 
   const [editGroup, setEditGroup] = useState(false);
 
-  const selectedUser = useSelector(
-    (state) => state.users.selectedUser
-  );
+  const selectedUser = useSelector((state) => state.users.selectedUser);
 
   // const handleChange = (prop: string, value: string) => {
   //   dispatch(serversActions.editServer({ ...selectedServer, [prop]: value }));
@@ -57,7 +56,7 @@ const Information = () => {
     }
   };
 
-  const handleSave = () => { };
+  const handleSave = () => {};
   const rowsGen = () => {
     if (selectedUser?.type === "user") {
       return [
@@ -90,9 +89,7 @@ const Information = () => {
   return (
     <Box>
       <EditDialog />
-      <Title>
-        Network address for accessing server
-      </Title>
+      <Title>{t("users.information.title")}</Title>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableBody>
@@ -114,7 +111,7 @@ const Information = () => {
           sx={{ my: 3 }}
           onClick={handleEdit}
         >
-          Edit
+          {t("globals.edit")}
         </Button>
       ) : (
         <>
@@ -124,7 +121,7 @@ const Information = () => {
             sx={{ my: 3 }}
             onClick={handleSave}
           >
-            Save
+            {t("globals.save")}
           </Button>
           <Button
             variant="outlined"
@@ -132,7 +129,7 @@ const Information = () => {
             sx={{ my: 3, mx: 2 }}
             onClick={() => setEditGroup(false)}
           >
-            Cancel
+            {t("globals.cancel")}
           </Button>
         </>
       )}

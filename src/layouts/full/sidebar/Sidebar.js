@@ -1,12 +1,14 @@
-import { useMediaQuery, Box, Drawer } from '@mui/material';
-import Logo from '../shared/logo/Logo';
-import SidebarItems from './SidebarItems';
+import { useMediaQuery, Box, Drawer } from "@mui/material";
+import Logo from "../shared/logo/Logo";
+import SidebarItems from "./SidebarItems";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = (props) => {
-
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
-  const sidebarWidth = '270px';
+  const { i18n } = useTranslation();
+
+  const sidebarWidth = "270px";
 
   if (lgUp) {
     return (
@@ -20,13 +22,13 @@ const Sidebar = (props) => {
         {/* Sidebar for desktop */}
         {/* ------------------------------------------- */}
         <Drawer
-          anchor="left"
+          anchor={i18n.dir() === "rtl" ? "right" : "left"}
           open={props.isSidebarOpen}
           variant="permanent"
           PaperProps={{
             sx: {
               width: sidebarWidth,
-              boxSizing: 'border-box',
+              boxSizing: "border-box",
             },
           }}
         >
@@ -35,7 +37,7 @@ const Sidebar = (props) => {
           {/* ------------------------------------------- */}
           <Box
             sx={{
-              height: '100%',
+              height: "100%",
             }}
           >
             {/* ------------------------------------------- */}
@@ -50,7 +52,6 @@ const Sidebar = (props) => {
               {/* ------------------------------------------- */}
               <SidebarItems />
             </Box>
-            
           </Box>
         </Drawer>
       </Box>
@@ -59,7 +60,7 @@ const Sidebar = (props) => {
 
   return (
     <Drawer
-      anchor="left"
+      anchor={i18n.dir() === "rtl" ? "right" : "left"}
       open={props.isMobileSidebarOpen}
       onClose={props.onSidebarClose}
       variant="temporary"

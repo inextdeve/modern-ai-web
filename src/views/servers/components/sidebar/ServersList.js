@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ExpandLess, ExpandMore, HardDrive } from "src/components/shared/Icons";
 
 import { serversActions } from "src/store";
+import { useTranslation } from "react-i18next";
 
 const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
@@ -26,6 +27,7 @@ const MenuItem = ({ title, icon, selected, onClick }) => (
 );
 
 const ServersList = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [serversOpen, setServersOpen] = useState(false);
 
@@ -40,7 +42,7 @@ const ServersList = () => {
   return (
     <List>
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary={"Servers"} />
+        <ListItemText primary={t("globals.servers")} />
         {serversOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={serversOpen} timeout="auto" unmountOnExit>

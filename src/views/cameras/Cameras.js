@@ -16,8 +16,10 @@ import DashboardCard from "src/components/shared/DashboardCard";
 import { camerasActions } from "src/store";
 import SkeletonLoader from "src/components/shared/SkeletonLoader";
 import { createCamera } from "src/store/cameras";
+import { useTranslation } from "react-i18next";
 
 const Cameras = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const [value, setValue] = useState("");
@@ -43,26 +45,26 @@ const Cameras = () => {
 
   return (
     <>
-      <PageContainer title="Cameras" description="this is Cameras">
+      <PageContainer title={t("globals.cameras")} description="this is Cameras">
         <Dialog open={open}>
           <Box sx={{ padding: "1rem" }}>
             <DialogTitle sx={{ textAlign: "center" }}>
-              Add new camera
+              {t("cameras.add")}
             </DialogTitle>
             <TextField
               size="small"
               sx={{ paddingBottom: "1.5rem", minWidth: "300px" }}
-              placeholder="Name"
+              placeholder={t("globals.name")}
               value={value}
               {...error}
               onChange={({ target }) => setValue(target.value)}
             />
             <Stack direction="row" gap={2}>
               <Button variant="contained" onClick={addCamera}>
-                Add
+                {t("globals.add")}
               </Button>
               <Button variant="outlined" onClick={close}>
-                Close
+                {t("globals.close")}
               </Button>
             </Stack>
           </Box>

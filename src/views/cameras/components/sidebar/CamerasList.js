@@ -11,6 +11,7 @@ import {
 
 import { Video, ExpandMore, ExpandLess } from "src/components/shared/Icons";
 import { camerasActions } from "src/store";
+import { useTranslation } from "react-i18next";
 
 const MenuItem = ({ title, icon, selected, onClick }) => (
   <ListItemButton
@@ -26,6 +27,7 @@ const MenuItem = ({ title, icon, selected, onClick }) => (
 );
 
 const CamerasList = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const allCameras = useSelector((state) => state.cameras.items);
@@ -40,7 +42,7 @@ const CamerasList = () => {
   return (
     <List>
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary={"Cameras"} />
+        <ListItemText primary={t("globals.cameras")} />
         {camerasOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={camerasOpen} timeout="auto" unmountOnExit>

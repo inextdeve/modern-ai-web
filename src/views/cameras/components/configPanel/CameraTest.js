@@ -19,8 +19,10 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function OutlinedCard({ camera }) {
+  const { t } = useTranslation();
   const [volumeValue, setVolumeValue] = useState(30);
   const [testing, setTesting] = useState(false);
   const [testingMessage, setTestingMessage] = useState(null);
@@ -61,7 +63,7 @@ export default function OutlinedCard({ camera }) {
                 component="span"
                 sx={{ fontSize: "0.9rem", fontWeight: "bold" }}
               >
-                {testing ? "Stop testing" : "Test Camera"}
+                {testing ? t("globals.stopTesting") : t("globals.testCam")}
               </Typography>
             </Button>
           </Stack>
@@ -73,7 +75,7 @@ export default function OutlinedCard({ camera }) {
               color="text.secondary"
               gutterBottom
             >
-              Main stream
+              {t("globals.mainStream")}
             </Typography>
             <Box sx={{ maxWidth: "300px", aspectRatio: "16/9" }}>
               <iframe
@@ -108,7 +110,7 @@ export default function OutlinedCard({ camera }) {
             </Stack> */}
             <FormControlLabel
               control={<Checkbox defaultChecked />}
-              label="Extensive testing"
+              label={t("globals.extensiveTesting")}
             />
           </CardContent>
         ) : null}
