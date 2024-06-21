@@ -20,13 +20,19 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 export default function OutlinedCard({ camera }) {
   const { t } = useTranslation();
   const [volumeValue, setVolumeValue] = useState(30);
   const [testing, setTesting] = useState(false);
   const [testingMessage, setTestingMessage] = useState(null);
-
+  const serverAddress = useSelector((state) => {
+    const serverId = Number(state.cameras.selectedCamera.streamServer);
+    return serverId
+      ? state.servers.items.find((server) => server.id === serverId)
+      : { address: "localhost", protocol: "http", port: 9000 };
+  });
   const startCameraTest = () => {
     setTesting((prev) => !prev);
   };
@@ -81,7 +87,7 @@ export default function OutlinedCard({ camera }) {
               <iframe
                 style={{ minWidth: "100%", aspectRatio: "16/9" }}
                 frameBorder="0"
-                src={`http://s1.rcj.care:9000/camera/stream/${camera.id}/0`}
+                src={`${serverAddress.protocol}://${serverAddress.address}:${serverAddress.port}/camera/stream/${camera.id}/0`}
                 title="video-stream"
               ></iframe>
               {/* <Stack

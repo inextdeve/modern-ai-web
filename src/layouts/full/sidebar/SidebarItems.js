@@ -12,17 +12,15 @@ const SidebarItems = () => {
   return (
     <Box sx={{ px: 3 }}>
       <List sx={{ pt: 0 }} className="sidebarNav">
-        {Menuitems.map((item) => {
+        {Menuitems.map((item, index) => {
           // {/********SubHeader**********/}
           if (item.subheader) {
-            return <NavGroup item={item} key={item.subheader} />;
+            return <NavGroup item={item} key={index} />;
 
             // {/********If Sub Menu**********/}
             /* eslint no-else-return: "off" */
           } else {
-            return (
-              <NavItem item={item} key={item.id} pathDirect={pathDirect} />
-            );
+            return <NavItem item={item} key={index} pathDirect={pathDirect} />;
           }
         })}
       </List>

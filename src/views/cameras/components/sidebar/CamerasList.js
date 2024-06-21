@@ -33,7 +33,7 @@ const CamerasList = () => {
   const allCameras = useSelector((state) => state.cameras.items);
   const selectedCamera = useSelector((state) => state.cameras.selectedCamera);
 
-  const [camerasOpen, setCameraOpen] = useState(false);
+  const [camerasOpen, setCameraOpen] = useState(!!selectedCamera);
 
   const handleClick = () => {
     setCameraOpen((prev) => !prev);

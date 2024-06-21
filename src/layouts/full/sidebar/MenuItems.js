@@ -51,6 +51,12 @@ const Menuitems = [
     id: uniqueId(),
     title: <Trans value="globals.videoAnalytics" />,
     icon: ChartDots,
+    href: "/video-analytics",
+  },
+  {
+    id: uniqueId(),
+    title: <Trans value="globals.analytics" />,
+    icon: ChartDots,
     href: "/analytics",
   },
   {

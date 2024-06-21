@@ -30,6 +30,9 @@ const Login = Loadable(lazy(() => import("../views/authentication/Login")));
 const Cameras = Loadable(lazy(() => import("../views/cameras/Cameras")));
 const Servers = Loadable(lazy(() => import("../views/servers/Servers")));
 const Users = Loadable(lazy(() => import("../views/users/Users")));
+const VideoAnalytics = Loadable(
+  lazy(() => import("../views/video-analytics/VideoAnalytics"))
+);
 const Analytics = Loadable(lazy(() => import("../views/analytics/Analytics")));
 const Settings = Loadable(lazy(() => import("../views/settings/Settings")));
 
@@ -47,6 +50,7 @@ const Router = [
       { path: "/cameras", element: <Cameras /> },
       { path: "/servers", element: <Servers /> },
       { path: "/users", element: <Users /> },
+      { path: "/video-analytics", element: <VideoAnalytics /> },
       { path: "/analytics", element: <Analytics /> },
       { path: "/sample-page", exact: true, element: <SamplePage /> },
       { path: "/settings", exact: true, element: <Settings /> },
