@@ -87,7 +87,7 @@ const VideoCard = ({ camera }) => {
         <iframe
           style={{ minWidth: "100%", aspectRatio: "16/9", display: "block" }}
           frameBorder="0"
-          src={`${server.protocol}://${server.address}:${server.port}/camera/stream/${camera.id}/0`}
+          src={`${server.protocol}://${server.address}:${server.port}/stream/${camera.id}/0`}
           title="video-stream"
         ></iframe>
       </CardContent>
