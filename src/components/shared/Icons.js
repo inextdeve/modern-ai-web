@@ -20,6 +20,7 @@ import {
   IconCircleX as XCircle,
   IconVolume as Volume1,
   IconVolume2 as Volume2,
+  IconMapSearch as Map,
 } from "@tabler/icons-react";
 
 import { HardDrive, Trash2, Play } from "lucide-react";
@@ -49,4 +50,5 @@ export {
   XCircle,
   Volume1,
   Volume2,
+  Map,
 };

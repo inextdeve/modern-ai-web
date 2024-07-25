@@ -5,6 +5,8 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./style.css";
 import i18n from "./i18n";
+import preloadImages from "./map/core/preloadImages";
+preloadImages();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 document.getElementById("root").dir = i18n.dir();

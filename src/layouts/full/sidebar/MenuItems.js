@@ -3,7 +3,7 @@ import {
   IconLayoutDashboard,
   IconDeviceCctv,
 } from "@tabler/icons-react";
-import { ServerIcon, Users, ChartDots } from "src/components/shared/Icons";
+import { ServerIcon, Users, ChartDots, Map } from "src/components/shared/Icons";
 import { uniqueId } from "lodash";
 import i18next from "../../../i18n";
 import { useTranslation } from "react-i18next";
@@ -56,7 +56,7 @@ const Menuitems = [
   {
     id: uniqueId(),
     title: <Trans value="globals.analytics" />,
-    icon: ChartDots,
+    icon: Map,
     href: "/analytics",
   },
   {
